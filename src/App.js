@@ -1,11 +1,19 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Change import to use Routes
 import "./App.css";
+import Density from "./Density/Density";
 import Sidebar from "./Sidebar/Sidebar";
 
 function App() {
   return (
-    <div>
-      <Sidebar />
-    </div>
+    <Router>
+      <div>
+        <Sidebar />
+        <Routes>
+          <Route path="/Density" element={<Density />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

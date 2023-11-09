@@ -1,9 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Density extends Component {
-  render() {
-    return (
-      <div>Density</div>
-    )
-  }
+const Density = () => {
+  return (
+    <div className='density' id="Density">
+      Density
+    </div>
+  )
 }
+
+export default Density;
+

@@ -12,16 +12,16 @@ const drawChart = (svgSelector) => {
 
   const data = [12, 5, 20, 6, 9, 10];
 
-  d3.csv(
-    '../TongDanSo.csv'
-  ).then(function(data) {
+  d3.csv("/TongDanSo.csv").then(function (data) {
     let year = "Năm 2016";
-    let dataByYear = year.map(function (d) {
+    let dataByYear = data.map(function (d) {
       return {
-        
-      }
-    })
-  })
+        tinh: d["Tên Tỉnh"],
+        year: year,
+      };
+    });
+    console.log(dataByYear);
+  });
 
   const svg = d3
     .select(svgSelector)

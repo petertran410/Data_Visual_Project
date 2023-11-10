@@ -9,13 +9,13 @@ main {
 
 aside {
   background-color: #c4a8ff;
-  width: 18.75rem;
+  width: 100%;
   height: 100vh;
 }
 
-.container {
+/* .container {
   margin: 4.5rem 1.4rem;
-}
+} */
 
 .btn-container {
   position: fixed;

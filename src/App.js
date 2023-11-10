@@ -7,8 +7,8 @@ import Sidebar from "./Sidebar/Sidebar";
 function App() {
   return (
     <Router>
-      <div>
-        <Sidebar />
+      <Sidebar />
+      <div className="container">
         <Routes>
           <Route path="/Density" element={<Density />} />
         </Routes>

@@ -13,15 +13,15 @@ aside {
   height: 100vh;
 }
 
-/* .container {
+.sideBarContainer {
   margin: 4.5rem 1.4rem;
-} */
+}
 
 .btn-container {
   position: fixed;
 }
 
-.container a {
+.sideBarContainer a {
   color: #f9fafb;
   text-decoration: none;
   font-size: 1rem;

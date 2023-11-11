@@ -3,51 +3,82 @@ import * as d3 from "d3";
 import "./DrawChar.scss";
 
 const drawChart = (svgSelector) => {
-  let width = 700;
-  let height = 700;
-  let marginTop = 20;
-  let marginRight = 20;
-  let marginBottom = 30;
-  let marginLeft = 40;
+  // let width = 700;
+  // let height = 700;
+  // let marginTop = 20;
+  // let marginRight = 20;
+  // let marginBottom = 30;
+  // let marginLeft = 40;
 
-  const data = [12, 5, 20, 6, 9, 10];
+  // const data = [12, 5, 20, 6, 9, 10];
 
-  d3.csv("/TongDanSo.csv").then(function (data) {
-    let year = "Năm 2016";
-    let dataByYear = data.map(function (d) {
-      return {
-        tinh: d["Tên Tỉnh"],
-        year: year,
-      };
+  // d3.csv(
+  //   "/home/tranngocnhan/Ngoc_Nhan/data_visual_project/src/Density/totalpopulation.csv"
+  // ).then(function (data) {
+  //   let year = "2016";
+  //   let dataByYear = data.map(function (d) {
+  //     return {
+  //       tinh: d["CONVINCE"],
+  //       year: year,
+  //       confirm: parseInt(d[year]),
+  //     };
+  //   });
+  //   console.log(dataByYear);
+  // });
+
+  d3.csv("/home/tranngocnhan/Ngoc_Nhan/data_visual_project/src/Density/TongDanSo.csv")
+    .then(function (data) {
+      // Log the entire data array
+      // console.log(data);
+
+      // Check if data is an array
+      if (Array.isArray(data)) {
+        // Assuming you want to create a new array with a specific structure
+        // let year = "2016";
+        let dataByYear = data.map(function (d) {
+          return {
+            ID: d["ID"],
+            CONVINCE: d["CONVINCE"],
+            // year: year,
+            // confirm: parseInt(d[year]),
+          };
+        });
+
+        // Log the new array
+        console.log(dataByYear);
+      } else {
+        console.error("Data is not an array:", data);
+      }
+    })
+    .catch(function (error) {
+      console.error("Error loading CSV:", error);
     });
-    console.log(dataByYear);
-  });
 
-  const svg = d3
-    .select(svgSelector)
-    .append("svg")
-    .attr("width", 700)
-    .attr("height", 700);
+  // const svg = d3
+  //   .select(svgSelector)
+  //   .append("svg")
+  //   .attr("width", 700)
+  //   .attr("height", 700);
 
-  svg
-    .selectAll("rect")
-    .data(data)
-    .enter()
-    .append("rect")
-    .attr("x", (d, i) => i * 70)
-    .attr("y", (d, i) => 400 - 10 * d)
-    .attr("width", 65)
-    .attr("height", (d, i) => d * 10)
-    .attr("fill", "green");
+  // svg
+  //   .selectAll("rect")
+  //   .data(data)
+  //   .enter()
+  //   .append("rect")
+  //   .attr("x", (d, i) => i * 70)
+  //   .attr("y", (d, i) => 400 - 10 * d)
+  //   .attr("width", 65)
+  //   .attr("height", (d, i) => d * 10)
+  //   .attr("fill", "green");
 
-  svg
-    .selectAll("text")
-    .data(data)
-    .enter()
-    .append("text")
-    .text((d) => d)
-    .attr("x", (d, i) => i * 70)
-    .attr("y", (d, i) => 400 - 10 * d - 3);
+  // svg
+  //   .selectAll("text")
+  //   .data(data)
+  //   .enter()
+  //   .append("text")
+  //   .text((d) => d)
+  //   .attr("x", (d, i) => i * 70)
+  //   .attr("y", (d, i) => 400 - 10 * d - 3);
 
   // // Declare the x (horizontal position) scale.
   // const x = d3

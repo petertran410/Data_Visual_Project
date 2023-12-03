@@ -49,5 +49,5 @@ const links = [
   { name: "Home", to: "#", id: 1 },
   { name: "Population By Density", to: "/Density", id: 2 },
   { name: "Population By Age", to: "#", id: 3 },
-  { name: "Population By GDP", to: "#", id: 4 },
+  { name: "Population By GDP", to: "/GDP", id: 4 },
 ];

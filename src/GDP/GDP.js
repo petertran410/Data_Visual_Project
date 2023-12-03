@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
+import Grap from './Grap';
 
-export default class GDP extends Component {
-  render() {
-    return (
-      <div>GDP</div>
-    )
-  }
+const GDP = () => {
+
+
+  return (
+    <div className='GDP' id="GDP">
+      <h1>GDP1</h1>
+      <Grap />
+    </div>
+
+  )
 }
+
+export default GDP;

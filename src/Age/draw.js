@@ -18,7 +18,10 @@ const Draw = () => {
         console.error('Error loading CSV:', error);
       });
   }, []);
-
+  const rowConverter = (row) => {
+    // Customize this function to convert and format each row as needed
+    return row;
+  };
 };
 
 export default Draw;

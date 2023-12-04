@@ -1,6 +1,6 @@
 import React from 'react'
 import * as d3 from "d3";
-import { useState } from 'react';
+
 const Grap = () => {
     function rowConverter(d) {
         return {
@@ -21,7 +21,11 @@ const Grap = () => {
             // console.log(first20Rows);
             console.log(originalData);
 
+
             your_draw_chart_function(originalData);
+
+
+
         })
         .catch((error) => {
             console.log(error);
@@ -29,13 +33,16 @@ const Grap = () => {
 
     // FUNCTION HERE
     function your_draw_chart_function(data) {
+        console.log(data);
         d3.select("svg").remove();
-        // Create svg
+
         const svg = d3.select("#grap")
             .append("svg")
             .attr("width", 1000)
             .attr("height", 1000)
-            .attr("padding", 200)
+            .attr("padding", 500)
+
+        d3.select("svg").remove();
         var Tooltip = d3.select("#grap")
             .append("div")
             .style("opacity", 0)
@@ -82,7 +89,7 @@ const Grap = () => {
             .padding(0.1);
         var yScale = d3
             .scaleLinear()
-            .domain([0, d3.max(data, d => d.year1)])
+            .domain([0, d3.max(data, d => d.year1) + 2])
             .range([svg.attr("height") - 30, 0]);
 
         var xAxis = d3.axisBottom(xScale);
@@ -113,16 +120,15 @@ const Grap = () => {
             .append("rect")
             .attr("fill", "blue")
             .attr("x", d => xScale(d.year))
-            .attr("y", d => yScale(d.year1) - 30)
+            .attr("y", d => yScale(d.year1))
             .attr("width", xScale.bandwidth())
-            .attr("height", d => svg.attr("height") - yScale(d.year1))
-            .attr("opacity", d => (d.cases / 100000) + 0.07)
+            .attr("height", d => svg.attr("height") - yScale(d.year1) - 30)
+            // .attr("opacity", d => (d.year1 / 1000) + 0.07)
             .on("mouseover", mouseover)
             .on("mousemove", mousemove)
             .on("mouseleave", mouseleave);
         svg.append("g")
             .attr("transform", "translate(" + 20 + ",0)")
-
             .call(yAxis)
             .attr("font-size", "20px");
         svg.selectAll("text")
@@ -133,10 +139,10 @@ const Grap = () => {
                 return d.GRDP
             })
             .attr("y", function (d) {
-                return yScale(d.year1) + 10; // x position of the label
+                return yScale(d.year1); // x position of the label
             })
             .attr("x", function (d, i) { // y position of the label
-                return xScale.bandwidth() / 2;
+                return xScale.bandwidth();
             })
             .attr("text-anchor", "middle")
             .attr("font-family", "times new roman")
@@ -146,7 +152,7 @@ const Grap = () => {
 
     return (
         <div className='grap' id="grap">
-
+            <svg></svg>
             {/* <button id="AddData">Add new data</button>
             <button id="RemoveData">Remove data</button>
             <button id="Sort">Sort</button>
@@ -155,6 +161,7 @@ const Grap = () => {
                 <option value="name">Name</option>
                 <option value="grdp">GRDP-VND</option>
             </select> */}
+            <svg></svg>
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
-import Draw from './draw';
+import Draw from './Draw';
 const Age = () => {
   return (
     <div className='age' id="Age">
-        <draw />
+        <Draw />
     </div>
   )
 }

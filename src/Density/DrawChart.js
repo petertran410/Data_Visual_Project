@@ -51,62 +51,66 @@ const drawChart = (svgSelector) => {
       } else {
         console.error("Data is not an array:", data);
       }
+
+      chartData(dataByYear);
     })
     .catch(function (error) {
       console.error("Error loading CSV:", error);
     });
 
-  const svg = d3
-    .select(svgSelector)
-    .append("svg")
-    .attr("width", 700)
-    .attr("height", 700);
+  let chartData = (data) => {
+    const svg = d3
+      .select(svgSelector)
+      .append("svg")
+      .attr("width", 700)
+      .attr("height", 700);
 
-  svg
-    .selectAll("rect")
-    .data(data)
-    .enter()
-    .append("rect")
-    .attr("x", (d, i) => i * 70)
-    .attr("y", (d, i) => 400 - 10 * d)
-    .attr("width", 65)
-    .attr("height", (d, i) => d * 10)
-    .attr("fill", "green");
+    svg
+      .selectAll("rect")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => i * 70)
+      .attr("y", (d, i) => 400 - 10 * d)
+      .attr("width", 65)
+      .attr("height", (d, i) => d * 10)
+      .attr("fill", "green");
 
-  svg
-    .selectAll("text")
-    .data(data)
-    .enter()
-    .append("text")
-    .text((d) => d)
-    .attr("x", (d, i) => i * 70)
-    .attr("y", (d, i) => 400 - 10 * d - 3);
+    svg
+      .selectAll("text")
+      .data(data)
+      .enter()
+      .append("text")
+      .text((d) => d)
+      .attr("x", (d, i) => i * 70)
+      .attr("y", (d, i) => 400 - 10 * d - 3);
 
-  // Declare the x (horizontal position) scale.
-  const x = d3
-    .scaleUtc()
-    .domain([new Date("2023-01-01"), new Date("2024-01-01")])
-    .range([marginLeft, width - marginRight]);
+    // Declare the x (horizontal position) scale.
+    const x = d3
+      .scaleUtc()
+      .domain(data.map((d) => d.year))
+      .range([marginLeft, width - marginRight]);
 
-  // Declare the y (vertical position) scale.
-  const y = d3
-    .scaleLinear()
-    .domain([0, 100])
-    .range([height - marginBottom, marginTop]);
+    // Declare the y (vertical position) scale.
+    const y = d3
+      .scaleLinear()
+      .domain([0, 100])
+      .range([height - marginBottom, marginTop]);
 
-  // Create the SVG container.
+    // Create the SVG container.
 
-  // Add the x-axis.
-  svg
-    .append("g")
-    .attr("transform", `translate(0,${height - marginBottom})`)
-    .call(d3.axisBottom(x));
+    // Add the x-axis.
+    svg
+      .append("g")
+      .attr("transform", `translate(0,${height - marginBottom})`)
+      .call(d3.axisBottom(x));
 
-  // Add the y-axis.
-  svg
-    .append("g")
-    .attr("transform", `translate(${marginLeft},0)`)
-    .call(d3.axisLeft(y));
+    // Add the y-axis.
+    svg
+      .append("g")
+      .attr("transform", `translate(${marginLeft},0)`)
+      .call(d3.axisLeft(y));
+  };
 };
 
 export default class DrawChart extends Component {

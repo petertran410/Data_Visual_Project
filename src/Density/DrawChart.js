@@ -1,4 +1,4 @@
-  import React, { Component } from "react";
+import React, { Component } from "react";
 import * as d3 from "d3";
 import "./DrawChar.scss";
 
@@ -26,7 +26,9 @@ const drawChart = (svgSelector) => {
   //   console.log(dataByYear);
   // });
 
-  d3.csv("/home/tranngocnhan/Ngoc_Nhan/data_visual_project/src/Density/TocDoTangTruongGRDP.csv")
+  d3.csv(
+    "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/totalpopulation.csv"
+  )
     .then(function (data) {
       // Log the entire data array
       console.log(data);
@@ -34,11 +36,11 @@ const drawChart = (svgSelector) => {
       // Check if data is an array
       if (Array.isArray(data)) {
         // Assuming you want to create a new array with a specific structure
-        let year = "NĂM 2016";
+        let year = "2016";
         let dataByYear = data.map(function (d) {
           return {
-            ID: d["MÃ TỈNH"],
-            CONVINCE: d["TÊN TỈNH"],
+            ID: d["ID"],
+            CONVINCE: d["CONVINCE"],
             year: year,
             confirm: parseInt(d[year]),
           };
@@ -60,25 +62,25 @@ const drawChart = (svgSelector) => {
     .attr("width", 700)
     .attr("height", 700);
 
-  // svg
-  //   .selectAll("rect")
-  //   .data(data)
-  //   .enter()
-  //   .append("rect")
-  //   .attr("x", (d, i) => i * 70)
-  //   .attr("y", (d, i) => 400 - 10 * d)
-  //   .attr("width", 65)
-  //   .attr("height", (d, i) => d * 10)
-  //   .attr("fill", "green");
+  svg
+    .selectAll("rect")
+    .data(data)
+    .enter()
+    .append("rect")
+    .attr("x", (d, i) => i * 70)
+    .attr("y", (d, i) => 400 - 10 * d)
+    .attr("width", 65)
+    .attr("height", (d, i) => d * 10)
+    .attr("fill", "green");
 
-  // svg
-  //   .selectAll("text")
-  //   .data(data)
-  //   .enter()
-  //   .append("text")
-  //   .text((d) => d)
-  //   .attr("x", (d, i) => i * 70)
-  //   .attr("y", (d, i) => 400 - 10 * d - 3);
+  svg
+    .selectAll("text")
+    .data(data)
+    .enter()
+    .append("text")
+    .text((d) => d)
+    .attr("x", (d, i) => i * 70)
+    .attr("y", (d, i) => 400 - 10 * d - 3);
 
   // Declare the x (horizontal position) scale.
   const x = d3

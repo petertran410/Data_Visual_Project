@@ -25,7 +25,32 @@ const Draw = () => {
   const formatData = (csvData) => {
     return csvData;
   };
+  const drawChart = (data) => {
+    const dataTable = GoogleCharts.api.visualization.arrayToDataTable(data);
 
+    const barChart = new GoogleCharts.api.visualization.BarChart(
+      document.getElementById('chart')
+    );
+
+    const options = {
+      title: 'Tuoi tho binh quan nguoi viet nam',
+      height: 500,
+      width: 400,
+      isStacked: true,
+      hAxis: {
+        format: ';',
+        direction: -1,
+      },
+      vAxis: {
+        direction: -1,
+      },
+      focusTarget: 'category',
+      allowHtml: true,
+    };
+
+    barChart.draw(dataTable, options);
+  };
+
+  return <div id="chart" />;
 };
-
 export default Draw;

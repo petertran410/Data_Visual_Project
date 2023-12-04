@@ -22,6 +22,10 @@ const Draw = () => {
     // Customize this function to convert and format each row as needed
     return row;
   };
+  const formatData = (csvData) => {
+    return csvData;
+  };
+
 };
 
 export default Draw;

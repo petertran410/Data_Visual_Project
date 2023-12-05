@@ -34,7 +34,7 @@ const Grap = () => {
     // FUNCTION HERE
     function your_draw_chart_function(data) {
         console.log(data);
-        d3.select("svg").remove();
+        // d3.select("svg").remove();
 
         const svg = d3.select("#grap")
             .append("svg")
@@ -42,7 +42,7 @@ const Grap = () => {
             .attr("height", 1000)
             .attr("padding", 500)
 
-        d3.select("svg").remove();
+
         var Tooltip = d3.select("#grap")
             .append("div")
             .style("opacity", 0)
@@ -107,11 +107,19 @@ const Grap = () => {
             .attr("font-size", "20px")
             .style("text-anchor", "end");
 
-
-        // svg
-        //     .append("g")
-        //     .attr("class", "y-axis")
-        //     .call(yAxis);
+        // label
+        svg.selectAll("text")
+            .data(data)
+            .enter().append("text")
+            .text(function (d) { return d.year1 })
+            .attr("class", "text")
+            .attr("x", function (d, i) { return (i * 60) + 36 })
+            .attr("y", function (d, i) { return 415 - (d * 10) })
+            .attr("text-anchor", "middle")
+            .attr("font-family", "times new roman")
+            .attr("font-size", "20px")
+            .attr("fill", "red")
+            .style("opacity", 1);
 
         // Create Bars
         svg.selectAll("rect")
@@ -127,27 +135,25 @@ const Grap = () => {
             .on("mouseover", mouseover)
             .on("mousemove", mousemove)
             .on("mouseleave", mouseleave);
-        svg.append("g")
-            .attr("transform", "translate(" + 20 + ",0)")
-            .call(yAxis)
-            .attr("font-size", "20px");
         svg.selectAll("text")
             .data(data)
             .enter()
             .append("text")
-            .text(function (d) {
-                return d.GRDP
-            })
-            .attr("y", function (d) {
-                return yScale(d.year1); // x position of the label
-            })
-            .attr("x", function (d, i) { // y position of the label
-                return xScale.bandwidth();
-            })
+            .text(function (d) { return d.year1 })
+            .attr("class", "text")
+            .attr("x", function (d, i) { return (i * 60) + 36 })
+            .attr("y", function (d, i) { return 415 - (d * 10) })
             .attr("text-anchor", "middle")
             .attr("font-family", "times new roman")
-            .attr("font-size", "12px")
-            .attr("fill", "White")
+            .attr("font-size", "20px")
+            .attr("fill", "red")
+            .style("opacity", 1);
+
+        svg.append("g")
+            .attr("transform", "translate(" + 20 + ",0)")
+            .call(yAxis)
+            .attr("font-size", "20px");
+
     }
 
     return (

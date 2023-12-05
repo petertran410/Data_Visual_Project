@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { GoogleCharts } from 'google-charts';
 import * as d3 from 'd3';
-
+import datasett from './dataset'
 const Draw = () => {
     const rowConverter = (row) => {
     };
 
-    const formatData = (originalData) => {
+    const formatData = (dataset) => {
     };
 
     useEffect(() => {
@@ -14,7 +14,7 @@ const Draw = () => {
             '/TuoiThoBinhQuan.csv',
             rowConverter
         )
-            .then((originalData) => {
+            .then((dataset) => {
                 console.log(originalData);
                 const formattedData = formatData(originalData);
                 GoogleCharts.load(() => drawChart(formattedData), { packages: ['corechart'] });
@@ -25,7 +25,7 @@ const Draw = () => {
     }, []);
   const drawChart = (data) => {
     const dataTable = GoogleCharts.api.visualization.arrayToDataTable(data);
-
+å
     const barChart = new GoogleCharts.api.visualization.BarChart(
       document.getElementById('chart')
     );

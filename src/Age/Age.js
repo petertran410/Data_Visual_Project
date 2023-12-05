@@ -1,5 +1,6 @@
 import React from 'react'
-import Draw from './draw2';
+import Draw from './Draw';
+
 const Age = () => {
   return (
     <div className='age' id="Age">
@@ -9,3 +10,5 @@ const Age = () => {
 }
 
 export default Age;
+
+

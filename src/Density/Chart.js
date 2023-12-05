@@ -14,7 +14,7 @@ export default class Chart extends Component {
 
   infoChart() {
     d3.csv(
-      "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/totalpopulation.csv"
+      "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/TongDanSo.csv"
     ).then((data) => { 
       let dataByDate = data.map(function (d) {
         return {

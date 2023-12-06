@@ -5,19 +5,15 @@ const Draw = () => {
   const width = 450 - margin.left - margin.right;
   const height = 350 - margin.top - margin.bottom;
 
-  // append the svg object to the body of the page
-  const svg = d3.select("#graph")
-    .append("svg")
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .attr("viewBox", "0 0 450 350")
-      .attr("preserveAspectRatio", "xMinYMin")
-    .append("g")
-      .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-      // parse the Data
+  const chartRef = React.useRef(null);
       d3.csv("./data")
       .then(function(data){
+
+          const svg = d3.select("#graph")
+            .append("svg")
+            .attr("width", 500)
+                .attr("height", 500)
+                .attr("padding", 500);
           const xScaleMale = d3.scaleLinear()
             .domain([0, d3.max(data, d => +d.male)])
             .range([width/2, 0]);
@@ -38,27 +34,26 @@ const Draw = () => {
             .call(d3.axisBottom(xScaleFemale).tickSize(0).tickPadding(3).ticks(7, "%"))
             .call(function(d) { return d.select(".domain").remove()});
 
-          // set vertical grid line
+   
           const GridLineF = function() { return d3.axisBottom().scale(xScaleFemale)};
           svg
             .append("g")
-              .attr("class", "grid")
+            .attr("class", "grid")
             .call(GridLineF()
-              .tickSize(height,0,0)
-              .tickFormat("")
-              .ticks(7)
+            .tickSize(height,0,0)
+            .tickFormat("")
+            .ticks(7)
           );
           const GridLineM = function() { return d3.axisBottom().scale(xScaleMale)};
           svg
             .append("g")
-              .attr("class", "grid")
+            .attr("class", "grid")
             .call(GridLineM()
-              .tickSize(height,0,0)
-              .tickFormat("")
-              .ticks(7)
+            .tickSize(height,0,0)
+            .tickFormat("")
+            .ticks(7)
           );
 
-          // Y scale and Axis
           const yScale = d3.scaleBand()
               .domain(data.map(d => d.ages))
               .range([height, 0])
@@ -69,7 +64,7 @@ const Draw = () => {
               .call(d => d.select(".domain").remove());
 
           // create a tooltip
-          const tooltip = d3.select("body")
+          const tooltip = d3.select("#graph")
             .append("div")
               .attr("class", "tooltip");
 
@@ -90,7 +85,7 @@ const Draw = () => {
           };
           const mousemove2 = function(event,d) {
             tooltip
-            .html( `${d.female*100}%`)
+              .html( `${d.female*100}%`)
               .style("top", event.pageY - 10 + "px")
               .style("left", event.pageX + 10 + "px")
           };
@@ -187,11 +182,9 @@ const Draw = () => {
                   .attr("y", -(margin.top/5.5))
               .text("Female")
         })
-      return (
-        <div ref={chartRef} id="graph">
-        {/* Chart will be rendered here */}
-      </div>
-      )
+        return (
+          <div ref={chartRef} id="graph"></div>
+        );  
 }
 
 export default Draw;

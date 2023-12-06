@@ -4,15 +4,28 @@ import * as d3 from "d3";
 export default class Chart extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedConvince: this.getConvinceFromURL() || "Ha Noi",
+    };
     this.infoChart = this.infoChart.bind(this);
     this.draw = this.draw.bind(this);
+    this.handleConvinceChange = this.handleConvinceChange.bind(this);
   }
   componentDidMount() {
-    // Call the infoChart method when the component is mounted
+    if (!this.state.selectedConvince) {
+      // Set the default value only if it's not already set
+      this.setState({ selectedConvince: "Ha Noi" });
+    }
     this.infoChart();
   }
 
+  getConvinceFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("convince");
+  }
+
   infoChart() {
+    const { selectedConvince } = this.state;
     d3.csv(
       "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/TongDanSo.csv"
     )
@@ -23,7 +36,7 @@ export default class Chart extends Component {
         let year2019 = "2019";
         let year2020 = "2020";
         let year2021 = "2021";
-        let filteredData = data.filter((d) => d.CONVINCE === "Cao Bang");
+        let filteredData = data.filter((d) => d.CONVINCE === selectedConvince);
         // let parseTime = d3.timeParse("%Y");
         let dataByConvince = filteredData.map(function (d) {
           return {
@@ -136,9 +149,94 @@ export default class Chart extends Component {
       );
   }
 
+  handleConvinceChange(event) {
+    const newConvince = event.target.value;
+    this.setState({ selectedConvince: newConvince }, () => {
+      // Add a random query parameter to force a complete reload
+      const randomQuery = Math.random().toString(36).substring(7);
+      window.location.href = `${window.location.origin}${window.location.pathname}?convince=${newConvince}&${randomQuery}`;
+    });
+  }
+
   render() {
-    return <div>
-      <option value=""></option>
-    </div>;
+    const { selectedConvince } = this.state;
+    const convinceOptions = [
+      "Ha Noi",
+      "Ha Giang",
+      "Cao Bang",
+      "Bac Kan",
+      "Tuyon Quang",
+      "Lao Cai",
+      "Dien Bion",
+      "Lai Chou",
+      "Son La",
+      "Yon Boi",
+      "Hoa Bonh",
+      "Thoi Nguyon",
+      "Lang Son",
+      "Quang Ninh",
+      "Bac Giang",
+      "Phy Tho",
+      "Vinh Phyc",
+      "Bac Ninh",
+      "Hai Duong",
+      "Hai Phung",
+      "Hung Yon",
+      "Thoi Bonh",
+      "Ha Nam",
+      "Nam Dinh",
+      "Ninh Bonh",
+      "Thanh Hoo",
+      "Nghe An",
+      "Ha Tinh",
+      "Quang Bonh",
+      "Quang Tri",
+      "Thua Thion Hue",
+      "Da Nang",
+      "Quang Nam",
+      "Quang Ngoi",
+      "Bonh Dinh",
+      "Phy Yon",
+      "Khonh Hoa",
+      "Ninh Thuan",
+      "Bonh Thuan",
+      "Kon Tum",
+      "Gia Lai",
+      "Dak Lak",
+      "Dak Nung",
+      "Lom Dong",
+      "Bonh Phuoc",
+      "Toy Ninh",
+      "Bonh Duong",
+      "Dong Nai",
+      "Ba Ria-Vung Tau",
+      "TP Ho Cho Minh",
+      "Long An",
+      "Tien Giang",
+      "Ben Tre",
+      "Tra Vinh",
+      "Vinh Long",
+      "Dong Thop",
+      "An Giang",
+      "Kion Giang",
+      "Can Tho",
+      "Hau Giang",
+      "Suc Trang",
+      "Bac Liou",
+      "Ca Mau",
+    ];
+    return (
+      <div>
+        <label>Select CONVINCE:</label>
+        <select value={selectedConvince} onChange={this.handleConvinceChange}>
+          {convinceOptions.map((convince) => (
+            <option key={convince} value={convince}>
+              {convince}
+            </option>
+          ))}
+        </select>
+        {/* Render your chart or other UI components here */}
+      </div>
+    );
   }
 }

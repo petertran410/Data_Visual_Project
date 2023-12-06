@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Change import to use Routes
 import "./App.css";
 import Density from "./Density/Density";
+import Age from "./Age/Age";
 import Sidebar from "./Sidebar/Sidebar";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/Density" element={<Density />} />
+          <Route path="/Age" element={<Age />} />
         </Routes>
       </div>
     </Router>

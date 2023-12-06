@@ -19,7 +19,7 @@ const Chart = () => {
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
   // parse the Data
-  d3.csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/distribution/population_pyramid.csv")
+  d3.csv("https://raw.githubusercontent.com/petertran410/data_visual_project/Nguyenhuynhanhtu2/src/Age/data.csv")
   .then(function(data){
 
   // X scale and Axis
@@ -142,7 +142,7 @@ const Chart = () => {
       .attr("x", -(margin.left)*0.7)
       .attr("y", -(margin.top)/1.5)
       .attr("text-anchor", "start")
-    .text("Demographics of forcibly displaced people | 2020")
+    .text("Population of VietNam | 2022")
 
   // set source
   svg
@@ -151,7 +151,6 @@ const Chart = () => {
       .attr("x", -(margin.left)*0.7)
       .attr("y", height + margin.bottom*0.7)
       .attr("text-anchor", "start")
-    .text("Source: UNHCR")
 
   // set copyright
   svg
@@ -160,7 +159,7 @@ const Chart = () => {
       .attr("x", -(margin.left)*0.7)
       .attr("y", height + margin.bottom*0.9)
       .attr("text-anchor", "start")
-    .text("©UNHCR, The UN Refugee Agency")
+    .text("")
 
   //set legend
   svg

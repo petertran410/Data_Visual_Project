@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Ch
 import "./App.css";
 import Density from "./Density/Density";
 import Sidebar from "./Sidebar/Sidebar";
-
+import PoorHouseholds from "./PoorHouseholds/PoorHouseholds";
 function App() {
   return (
     <Router>
@@ -11,6 +11,7 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/Density" element={<Density />} />
+          <Route path="/PoorHouseholds" element={<PoorHouseholds />} />
         </Routes>
       </div>
     </Router>

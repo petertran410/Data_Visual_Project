@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-const PopulationPyramidChart = () => {
+const Chart = () => {
   const chartRef = useRef(null);
   useEffect(() => {  
     const margin = { top: 20, right: 20, bottom: 30, left: 40 };
@@ -186,12 +186,13 @@ const PopulationPyramidChart = () => {
             .attr("x", 60)
             .attr("y", -(margin.top/5.5))
         .text("Female")  
-  });
+  }, []); // Empty dependency array ensures the useEffect runs only once on mount
   return (
     <div ref={chartRef} id="viz_container">
       {/* Chart will be rendered here */}
     </div>
   );
-});
+  });
 };
-export default PopulationPyramidChart;
+  
+export default Chart;

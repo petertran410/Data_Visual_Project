@@ -1,10 +1,10 @@
 import React from 'react'
-import PopulationPyramidChart from './Draw';
+import Chart from './Draw';
 
 const Age = () => {
   return (
-    <div className='age' id="Age">
-        <PopulationPyramidChart />
+    <div className='Age' id="Age">
+        <Chart />
     </div>
   )
 }

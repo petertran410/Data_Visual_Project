@@ -9,11 +9,11 @@ main {
 
 aside {
   background-color: #c4a8ff;
-  width: 18.75rem;
+  width: 100%;
   height: 100vh;
 }
 
-.container {
+.sideBarContainer {
   margin: 4.5rem 1.4rem;
 }
 
@@ -21,7 +21,12 @@ aside {
   position: fixed;
 }
 
-.container a {
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.sideBarContainer a {
   color: #f9fafb;
   text-decoration: none;
   font-size: 1rem;

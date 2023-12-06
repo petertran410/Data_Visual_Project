@@ -20,7 +20,7 @@ export default function Sidebar() {
               transition: { delay: 0.7, duration: 0.3 },
             }}>
             <motion.div
-              className="container"
+              className="sideBarContainer"
               initial="closed"
               animate="open"
               exit="closed"

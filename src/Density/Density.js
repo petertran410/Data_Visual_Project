@@ -1,12 +1,13 @@
-import React from 'react'
+import React from "react";
+import DrawChart from "./DrawChart";
+import ScatterChart from "./ScatterChart";
 
-const Density = () => {
+export default function Density() {
   return (
-    <div className='density' id="Density">
-      Density
+    <div>
+      <DrawChart />
+      {/* <ScatterChart /> */}
     </div>
-  )
+  );
 }
-
-export default Density;
 

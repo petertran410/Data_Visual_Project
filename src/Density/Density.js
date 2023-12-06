@@ -1,11 +1,12 @@
-import React from 'react'
-import Chart from './Chart'
+import React from "react";
+import DrawChart from "./DrawChart";
+import ScatterChart from "./ScatterChart";
 
 export default function Density() {
   return (
     <div>
-      <Chart />
+      <DrawChart />
+      {/* <ScatterChart /> */}
     </div>
-  )
+  );
 }
-

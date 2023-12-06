@@ -1,157 +1,144 @@
-let width = 1500;
-let height = 800;
-let spacing = 100;
+import React, { Component } from "react";
+import * as d3 from "d3";
 
-let info = d3
-  .select("#info")
-  .style("position", "absolute") // Positioning
-  .style("background", "white")
-  .style("padding", "10px") // Modify the padding
-  .style("border", "2px solid black") // Modify the border
-  .style("display", "none");
+export default class Chart extends Component {
+  constructor(props) {
+    super(props);
+    this.infoChart = this.infoChart.bind(this);
+    this.draw = this.draw.bind(this);
+  }
+  componentDidMount() {
+    // Call the infoChart method when the component is mounted
+    this.infoChart();
+  }
 
-let svg = d3
-  .select("body")
-  .append("svg")
-  .attr("width", width)
-  .attr("height", height)
-  .append("g")
-  .attr("transform", `translate(${spacing / 2}, ${spacing / 2})`);
+  infoChart() {
+    d3.csv(
+      "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/TongDanSo.csv"
+    )
+      .then((data) => {
+        let year2016 = "2016";
+        let year2017 = "2017";
+        let year2018 = "2018";
+        let year2019 = "2019";
+        let year2020 = "2020";
+        let year2021 = "2021";
+        let filteredData = data.filter((d) => d.CONVINCE === "Cao Bang");
+        // let parseTime = d3.timeParse("%Y");
+        let dataByConvince = filteredData.map(function (d) {
+          return {
+            convince: d.CONVINCE,
+            year2016: year2016,
+            confirmYear2016: parseInt(d[year2016]),
+            year2017: year2017,
+            confirmYear2017: parseInt(d[year2017]),
+            year2018: year2018,
+            confirmYear2018: parseInt(d[year2018]),
+            year2019,
+            confirmYear2019: parseInt(d[year2019]),
+            year2020,
+            confirmYear2020: parseInt(d[year2020]),
+            year2021,
+            confirmYear2021: parseInt(d[year2021]),
+          };
+        });
+        console.log(dataByConvince);
+        this.draw(dataByConvince);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-d3.csv(
-  "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/totalpopulation.csv"
-).then(function (data) {
-  // let date = "3/20/20";
-  let dataByDate = data.map(function (d) {
-    return {
-      CONVINCE: parseFloat(d["CONVINCE"]),
-      ID: parseFloat(d["ID"]),
-      date: parseInt(d["2016"]),
-      // confirmed: parseInt(d[date]),
-    };
-  });
-  console.log(dataByDate);
-  draw(dataByDate);
-});
-function draw(data) {
-  let minCONVINCE = d3.min(data, function (d) {
-    return d.CONVINCE;
-  });
-  let maxCONVINCE = d3.max(data, function (d) {
-    return d.CONVINCE;
-  });
-  let minID = d3.min(data, function (d) {
-    return d.ID;
-  });
-  let maxID = d3.max(data, function (d) {
-    return d.ID;
-  });
+  draw(data) {
+    console.log(data);
+    // set the dimensions and margins of the graph
+    var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+      width = 1500 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom;
 
-  console.log(minLat, maxLat, minLong, maxLong);
+    // append the svg object to the body of the page
+    var svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    // Add X axis --> it is a date format
+    var x = d3
+      .scaleBand()
+      .domain([
+        "year2016",
+        "year2017",
+        "year2018",
+        "year2019",
+        "year2020",
+        "year2021",
+      ])
+      .range([0, width])
+      .padding(0.1);
+    svg
+      .append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+      .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-.50em")
+      .attr("dy", "-.55em")
+      .attr("transform", "rotate(-90)");
+    // Add Y axis
+    var y = d3
+      .scaleLinear()
+      .domain([
+        500000,
+        d3.max(data, function (d) {
+          return d3.max([
+            d.confirmYear2016,
+            d.confirmYear2017,
+            d.confirmYear2018,
+            d.confirmYear2019,
+            d.confirmYear2020,
+            d.confirmYear2021,
+          ]);
+        }),
+      ])
+      .range([height, 0]);
 
-  minCONVINCE = Math.ceil(minCONVINCE);
-  maxCONVINCE = Math.ceil(maxCONVINCE);
-  minID = Math.ceil(minID);
-  maxID = Math.ceil(maxID);
+    svg.append("g").call(d3.axisLeft(y));
 
-  console.log(minCONVINCE, maxCONVINCE, minID, maxID);
+    // Add the line
+    // Add the line
+    svg
+      .append("path")
+      .datum([
+        { year: "year2016", confirm: d3.mean(data, (d) => d.confirmYear2016) },
+        { year: "year2017", confirm: d3.mean(data, (d) => d.confirmYear2017) },
+        { year: "year2018", confirm: d3.mean(data, (d) => d.confirmYear2018) },
+        { year: "year2019", confirm: d3.mean(data, (d) => d.confirmYear2019) },
+        { year: "year2020", confirm: d3.mean(data, (d) => d.confirmYear2020) },
+        { year: "year2021", confirm: d3.mean(data, (d) => d.confirmYear2021) },
+      ])
 
-  let xScale = d3
-    .scaleLinear()
-    .domain([minID, maxID])
-    .range([0, width - spacing]);
-  let yScale = d3
-    .scaleLinear()
-    .domain([minCONVINCE, maxCONVINCE])
-    .range([height - spacing, 0]);
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5)
+      .attr(
+        "d",
+        d3
+          .line()
+          .x(function (d) {
+            return x(d.year) + x.bandwidth() / 2; // Adjust for band scale positioning
+          }) // Use x scale to map the year to x-coordinate
+          .y(function (d) {
+            return y(d.confirm);
+          }) // Use y scale to map the confirmation to y-coordinate
+      );
+  }
 
-  var xAxis = d3.axisBottom(xScale);
-  var yAxis = d3.axisLeft(yScale);
-
-  // 1
-  svg
-    .append("g")
-    .attr("class", "grid")
-    .attr("transform", `translate(0, ${height - spacing / 2})`)
-    .call(
-      d3
-        .axisBottom(xScale)
-        .tickSize(-height + spacing / 2)
-        .tickFormat("")
-        .tickSizeOuter(0)
-        .tickSizeInner(-height + spacing / 2)
-        .tickPadding(10)
-        .tickFormat("")
-    );
-
-  // 2
-  svg
-    .append("g")
-    .attr("class", "grid")
-    .attr("transform", `translate(${spacing / 2}, 0)`)
-    .call(
-      d3
-        .axisLeft(yScale)
-        .tickSize(-width + spacing / 2)
-        .tickFormat("")
-        .tickSizeOuter(0)
-        .tickSizeInner(-width + spacing / 2)
-        .tickPadding(10)
-        .tickFormat("")
-    );
-
-  svg
-    .append("g")
-    .attr("id", "xAxis")
-    .attr("transform", `translate(0, ${(height - spacing) / 2})`)
-    .call(xAxis)
-    .selectAll("text")
-    .style("font-size", "14px")
-    .style("font-weight", "bold")
-    .filter(function (d) {
-      return d === 0;
-    })
-    .attr("transform", "translate(-10,0)")
-    .style("text-anchor", "end");
-
-  svg
-    .append("g")
-    .attr("id", "yAxis")
-    .attr("transform", `translate(${(width - spacing) / 2}, 0)`)
-    .call(yAxis)
-    .selectAll("text")
-    .style("font-size", "14px")
-    .style("font-weight", "bold")
-    .attr("transform", "translate(0,-3)")
-    .filter(function (d) {
-      return d === 0;
-    })
-    .remove();
-
-  svg
-    .selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle")
-    .attr("cx", function (d) {
-      return xScale(d.long);
-    })
-    .attr("cy", function (d) {
-      return yScale(d.lat);
-    })
-    .attr("r", 10) // Circle size
-    .style("fill", "blue") // Color of circles
-    .style("opacity", 0.7) // Opacity
-    .on("mouseover", function (d) {
-      info.style("display", "block");
-      info
-        .html(
-          `Country: ${d.country}<br>Confirmed Cases: ${d.confirmed}<br>Latitude: ${d.lat}<br>Longitude: ${d.long}`
-        )
-        .style("left", d3.event.pageX + 10 + "px")
-        .style("top", d3.event.pageY - 28 + "px");
-    })
-    .on("mouseout", function () {
-      info.style("display", "none");
-    });
+  render() {
+    return <div>
+      <option value=""></option>
+    </div>;
+  }
 }

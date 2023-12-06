@@ -21,8 +21,8 @@ export default class Chart extends Component {
         return {
           CONVINCE: d["CONVINCE"],
           ID: d["ID"],
-          year2016: parseFloat(d["2016"]),
-          year2017: parseFloat(d["2017"]),
+          year2016: parseInt((d["2016"]), 10),
+          year2017: parseInt((d["2017"]), 10),
         };
       });
       console.log(dataByDate);
@@ -42,33 +42,33 @@ export default class Chart extends Component {
       .attr("height", height)
       .append("g")
       .attr("transform", `translate(${spacing / 2}, ${spacing / 2})`);
-    let minYear2016 = d3.min(data, function (d) {
-      return d.year2016;
+    let minCONVINCE = d3.min(data, function (d) {
+      return d.CONVINCE;
     });
-    let maxYear2016 = d3.max(data, function (d) {
-      return d.year2016;
+    let maxCONVINCE = d3.max(data, function (d) {
+      return d.CONVINCE;
     });
-    let minID = d3.min(data, function (d) {
+    let minYear2017 = d3.min(data, function (d) {
       return d.year2017;
     });
-    let maxID = d3.max(data, function (d) {
+    let maxYear2017 = d3.max(data, function (d) {
       return d.year2017;
     });
 
-    minYear2016 = Math.ceil(minYear2016);
-    maxYear2016 = Math.ceil(maxYear2016);
-    minID = Math.ceil(minID);
-    maxID = Math.ceil(maxID);
+    minCONVINCE = Math.ceil(minCONVINCE);
+    maxCONVINCE = Math.ceil(maxCONVINCE);
+    minYear2017 = Math.ceil(minYear2017);
+    maxYear2017 = Math.ceil(maxYear2017);
 
-    console.log(minYear2016, maxYear2016, minID, maxID);
+    console.log(minCONVINCE, maxCONVINCE, minYear2017, maxYear2017);
 
     let xScale = d3
       .scaleLinear()
-      .domain([minID, maxID])
+      .domain([minYear2017, maxYear2017])
       .range([0, width - spacing]);
     let yScale = d3
       .scaleLinear()
-      .domain([minYear2016, maxYear2016])
+      .domain([minCONVINCE, maxCONVINCE])
       .range([height - spacing, 0]);
 
     var xAxis = d3.axisBottom(xScale);
@@ -140,10 +140,10 @@ export default class Chart extends Component {
       .enter()
       .append("circle")
       .attr("cx", function (d) {
-        return xScale(d.year2016);
+        return xScale(d.year2017);
       })
       .attr("cy", function (d) {
-        return yScale(d.minYear2016);
+        return yScale(d.year2016);
       })
       .attr("r", 10) // Circle size
       .style("fill", "blue") // Color of circles

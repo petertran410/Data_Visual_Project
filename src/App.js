@@ -5,6 +5,7 @@ import Density from "./Density/Density";
 import Age from "./Age/Age";
 import Sidebar from "./Sidebar/Sidebar";
 import PoorHouseholds from "./PoorHouseholds/PoorHouseholds";
+import GDP from "./GDP/GDP";
 function App() {
   return (
     <Router>
@@ -12,6 +13,8 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/Density" element={<Density />} />
+          <Route path="/GDP" element={<GDP />} />
+          <Route path="/Age" element={<Age />} />
           <Route path="/PoorHouseholds" element={<PoorHouseholds />} />
         </Routes>
       </div>

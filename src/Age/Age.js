@@ -2,10 +2,10 @@ import Draw from './draw'
 import React from 'react'
 const Age = () => {
     return (
-      <div className='Age' id="Age">
+      <div className='age' id="Age">
         <Draw />
       </div>
     )
   }
   
-  export default Density;
+export default Age;

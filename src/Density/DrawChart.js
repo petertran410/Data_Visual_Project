@@ -72,7 +72,7 @@ export default class Chart extends Component {
 
     // append the svg object to the body of the page
     var svg = d3
-      .select("body")
+      .select("#drawChart")
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
@@ -100,11 +100,12 @@ export default class Chart extends Component {
       .attr("dx", "-.50em")
       .attr("dy", "-.55em")
       .attr("transform", "rotate(-90)");
+
     // Add Y axis
     var y = d3
       .scaleLinear()
       .domain([
-        500000,
+        300000,
         d3.max(data, function (d) {
           return d3.max([
             d.confirmYear2016,
@@ -235,7 +236,7 @@ export default class Chart extends Component {
             </option>
           ))}
         </select>
-        {/* Render your chart or other UI components here */}
+        <div className="drawChart" id="drawChart"></div>
       </div>
     );
   }

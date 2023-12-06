@@ -21,6 +21,11 @@ aside {
   position: fixed;
 }
 
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
 .sideBarContainer a {
   color: #f9fafb;
   text-decoration: none;

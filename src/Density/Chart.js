@@ -14,13 +14,13 @@ export default class Chart extends Component {
 
   infoChart() {
     d3.csv(
-      "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/TongDanSo.csv"
-    ).then((data) => { 
+      "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/TongDanSo%20(2).csv"
+    ).then((data) => {
       let dataByDate = data.map(function (d) {
         return {
-          CONVINCE: d["CONVINCE"],
-          ID: d["ID"],
-          date: parseInt(d["2016"]),
+          convince: d(["TÊN TỈNH"]),
+          year: parseInt(d(["NĂM 2016"])),
+          toanQuoc: parseFloat(d(["TOÀN QUỐC"])),
           // confirmed: parseInt(d[date]),
         };
       });

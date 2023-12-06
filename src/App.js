@@ -4,7 +4,7 @@ import "./App.css";
 import Density from "./Density/Density";
 import Age from "./Age/Age";
 import Sidebar from "./Sidebar/Sidebar";
-
+import GDP from "./GDP/GDP";
 function App() {
   return (
     <Router>
@@ -12,7 +12,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/Density" element={<Density />} />
-          <Route path="/Age" element={<Age />} />
+          <Route path="/GDP" element={<GDP />} />
         </Routes>
       </div>
     </Router>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Draw from './Draw';
+import Draw from './Draw2';
 
 const Age = () => {
   return (

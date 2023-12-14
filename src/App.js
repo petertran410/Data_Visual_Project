@@ -6,19 +6,22 @@ import Age from "./Age/Age";
 import Sidebar from "./Sidebar/Sidebar";
 import PoorHouseholds from "./PoorHouseholds/PoorHouseholds";
 import GDP from "./GDP/GDP";
+import ColSideBar from "./Sidebar/ColSideBar";
 function App() {
   return (
-    <Router>
-      <Sidebar />
-      <div className="container">
-        <Routes>
-          <Route path="/Density" element={<Density />} />
-          <Route path="/GDP" element={<GDP />} />
-          <Route path="/Age" element={<Age />} />
-          <Route path="/PoorHouseholds" element={<PoorHouseholds />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="bg-primary">
+      <Router>
+        <ColSideBar />
+        <div className="container">
+          <Routes>
+            <Route path="/Density" element={<Density />} />
+            <Route path="/GDP" element={<GDP />} />
+            <Route path="/Age" element={<Age />} />
+            <Route path="/PoorHouseholds" element={<PoorHouseholds />} />
+          </Routes>
+        </div>
+      </Router>
+    </div>
   );
 }
 

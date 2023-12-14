@@ -22,7 +22,8 @@ aside {
 }
 
 .container {
-  width: 90%;
+  max-width: auto;
+  height: 100vh;
   margin: 0 auto;
 }
 

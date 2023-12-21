@@ -10,12 +10,12 @@ import ColSideBar from "./Sidebar/ColSideBar";
 import Home from "./Home/Home";
 function App() {
   return (
-    <div className="bg-primary">
+    <div className="">
       <Router>
         <ColSideBar />
-        <div className="container ">
+        <div className=" ">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/Density" element={<Density />} />
             <Route path="/GDP" element={<GDP />} />
             <Route path="/Age" element={<Age />} />

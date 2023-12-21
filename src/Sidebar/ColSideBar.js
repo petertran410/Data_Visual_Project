@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export default function ColSideBar() {
   return (
     <div className="mr-3">
-      <NavLink to="/" className="btn btn-success">
+      <NavLink to="/home" className="btn btn-success">
         Home
       </NavLink>
       <NavLink to="/Density" className="btn btn-success">

@@ -12,7 +12,7 @@ function App() {
     <div className="bg-primary">
       <Router>
         <ColSideBar />
-        <div className="container">
+        <div className="container ">
           <Routes>
             <Route path="/Density" element={<Density />} />
             <Route path="/GDP" element={<GDP />} />

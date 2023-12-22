@@ -1,152 +1,144 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as d3 from "d3";
-// import { select, csv, json, geoAlbers, geoPath, zoom } from "d3";
+import { select } from "d3-selection";
+import { zoom } from "d3-zoom";
+import { geoPath, geoAlbers } from "d3-geo";
+import { scaleQuantize } from "d3-scale";
+import { csv, json } from "d3-fetch";
 
 export default function VNMap() {
-  var width = 70;
-  var height = 70;
+  useEffect(() => {
+    var width = 1000;
+    var height = 1000;
 
-  var zoom = d3
-    .zoom()
-    .scaleExtent([1, 40])
-    .translateExtent([
-      [0, 0],
-      [width, height],
-    ])
-    .extent([
-      [0, 0],
-      [width, height],
-    ])
-    .on("zoom", zoomed);
+    var zoomHandler = zoom()
+      .scaleExtent([1, 40])
+      .translateExtent([
+        [0, 0],
+        [width, height],
+      ])
+      .extent([
+        [0, 0],
+        [width, height],
+      ])
+      .on("zoom", zoomed);
 
-  var svg = d3
-    .select("body")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .call(zoom);
-  var g = svg.append("g");
+    var svg = select("#drawChart")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .call(zoomHandler);
 
-  var projection = d3
-    .geoAlbers()
-    .center([100, 4.4])
-    .rotate([2, 32])
-    .parallels([11, 20])
-    .scale([2000])
-    .translate([width / 30, height / 1.8]);
+    var g = svg.append("g");
 
-  var path = d3.geoPath().projection(projection);
+    const projection = d3
+      .geoAlbers()
+      .center([100, 4.4])
+      .rotate([2, 32])
+      .parallels([11, 20])
+      .scale([2000])
+      .translate([width / 30, height / 1.8]);
+    const path = geoPath().projection(projection);
 
-  var colorScale = d3
-    .scaleQuantize()
-    .range([
+    var colorScale = scaleQuantize().range([
       "rgb(185, 222, 255)",
       "rgb(185, 194, 255)",
       "rgb(196, 185, 255)",
       "rgb(209, 185, 255)",
     ]);
 
-  var tooltip = d3
-    .select("body")
-    .append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
+    var tooltip = select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
 
-  d3.csv(
-    "https://raw.githubusercontent.com/petertran410/Data-visualization/main/Lab-8/TranNgocNhan-ITITIU20264-Lab08/covid19_province.csv",
-    function (data) {
+    csv(
+      "https://raw.githubusercontent.com/petertran410/data_visual_project/Test/province_changed"
+    ).then((data) => {
       colorScale.domain([
         d3.min(data, function (d) {
-          return d.Confirm;
+          return (d.Confirm, d.Density);
         }),
         d3.max(data, function (d) {
-          return d.Confirm;
+          return (d.Confirm, d.Density);
         }),
       ]);
 
-      d3.json(
-        "https://raw.githubusercontent.com/TungTh/tungth.github.io/master/data/vn-provinces.json",
-        function (json) {
-          for (var i = 0; i < data.length; i++) {
-            var dataProvince = parseFloat(data[i].ma);
-            console.log(json.features[0].properties.Ma);
+      json(
+        "https://raw.githubusercontent.com/TungTh/tungth.github.io/master/data/vn-provinces.json"
+      ).then((json) => {
+        json.features.forEach((feature) => {
+          var dataProvince = parseFloat(feature.properties.Ma);
+          var correspondingData = data.find(
+            (d) => dataProvince === parseFloat(d.ma)
+          );
 
-            var dataC = data[i].Confirm;
-
-            for (var j = 0; j < json.features.length; j++) {
-              var jsonProvince = json.features[j].properties.Ma;
-              if (dataProvince == jsonProvince) {
-                json.features[j].properties.cases = dataC;
-                // console.log(dataC);
-                break;
-              }
-            }
-            var dataName = data[i].Province;
-
-            for (var k = 0; k < json.features.length; k++) {
-              var jsonProvince = json.features[k].properties.Ma;
-
-              if (dataProvince == jsonProvince) {
-                json.features[k].properties.province = dataName;
-
-                break;
-              }
-            }
+          if (correspondingData) {
+            feature.properties.cases = correspondingData.Confirm;
+            feature.properties.province = correspondingData.Province;
+            feature.properties.density = correspondingData.Density;
           }
+        });
 
-          var map = g
-            .selectAll("path")
-            .data(json.features)
-            .enter()
-            .append("path")
-            .attr("d", path)
-            .style("fill", function (d) {
-              var value = d.properties.cases;
-              if (value > 0) {
-                return colorScale(value);
-              } else {
-                return "#ccc";
-              }
-            })
-            .on("mouseover", function (d) {
-              d3.select(this)
-                .transition()
-                .duration(200)
-                .style("opacity", 1)
-                .style("stroke", "black");
-              tooltip
-                .transition()
-                .duration(200)
-                .style("opacity", 0.9)
-                .style("stroke", "black");
-              tooltip.html(d.province);
-            })
-            .on("mousemove", function (d) {
-              tooltip
-                .style("top", d3.event.pageY + "px")
-                .style("left", d3.event.pageX + 10 + "px");
+        var map = g
+          .selectAll("path")
+          .data(json.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .style("fill", function (d) {
+            var value = d.properties.cases && d.properties.density;
+            
+            if (value > 0) {
+              return colorScale(value);
+            } else {
+              return "#ccc";
+            }
+          })
+          .on("mouseover", function (event, d) {
+            select(this)
+              .transition()
+              .duration(200)
+              .style("opacity", 1)
+              .style("stroke", "black");
+            tooltip
+              .transition()
+              .duration(200)
+              .style("opacity", 0.9)
+              .style("stroke", "black");
+            tooltip.html(d.properties.province);
+          })
+          .on("mousemove", function (event, d) {
+            tooltip
+              .style("top", event.pageY + "px")
+              .style("left", event.pageX + 10 + "px");
 
-              tooltip.html(
-                d.properties.province.bold() +
-                  " <br>Cases: " +
-                  d.properties.cases.bold()
-              );
-            })
-            .on("mouseout", function (d) {
-              d3.select(this)
-                .transition()
-                .duration(200)
-                .style("stroke", "transparent");
-              tooltip.transition().duration(200).style("opacity", 0);
-            });
-        }
-      );
+            tooltip.html(
+              d.properties.province.bold() +
+                " <br>Cases: " +
+                d.properties.cases.bold() +
+                " <br>Density: " +
+                d.properties.density.bold()
+            );
+          })
+          .on("mouseout", function (event, d) {
+            select(this)
+              .transition()
+              .duration(200)
+              .style("stroke", "transparent");
+            tooltip.transition().duration(200).style("opacity", 0);
+          });
+      });
+    });
+
+    function zoomed(event) {
+      g.selectAll("path").attr("transform", event.transform);
     }
-  );
 
-  function zoomed() {
-    g.selectAll("path").attr("transform", d3.event.transform);
-  }
+    return () => {
+      // Cleanup code if needed
+    };
+  }, []);
 
-  return <div></div>;
+  return <div className="drawChart" id="drawChart"></div>;
 }

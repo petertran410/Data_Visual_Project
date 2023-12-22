@@ -4,12 +4,10 @@ import ScatterChart from "./ScatterChart";
 
 const Density = () => {
   return (
-    <div className='density' id="Density">
+    <div className="density" id="Density">
       <DrawChart />
     </div>
   );
-}
+};
 
 export default Density;
-
-

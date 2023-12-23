@@ -5,8 +5,10 @@ const Chart = () => {
   useEffect(() => {
     // set the dimensions and margins of the graph
     const margin = { top: 60, right: 20, bottom: 50, left: 60 };
-    const width = 450 - margin.left - margin.right;
-    const height = 350 - margin.top - margin.bottom;
+    // const width = 450 - margin.left - margin.right;
+    // const height = 350 - margin.top - margin.bottom;
+    const width = 350;
+    const height = 350;
 
     // append the svg object to the body of the page
     const svg = d3

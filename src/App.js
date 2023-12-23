@@ -7,7 +7,7 @@ import Age from "./Age/Age";
 import PoorHouseholds from "./PoorHouseholds/PoorHouseholds";
 import GDP from "./GDP/GDP";
 import ColSideBar from "./Sidebar/ColSideBar";
-import Home from "./Home/Home";
+// import Home from "./Home/Home";
 import Sidebar from "./Sidebar/Sidebar";
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           </div>
           <div className="ml-5 w-50 mt-5">
             <Routes>
-              <Route path="/" element={<Home />} />
+              {/* <Route path="/" element={<Home />} /> */}
               <Route path="/Density" element={<Density />} />
               <Route path="/GDP" element={<GDP />} />
               <Route path="/Age" element={<Age />} />

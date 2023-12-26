@@ -1,9 +1,8 @@
-// import React, { Component } from "react";
+import React from "react";
+import VNMap from "./VNMap";
 
-// export default class Home extends Component {
-//   render() {
-//     return (
-      
-//     );
-//   }
-// }
+export default function Home() {
+  return <VNMap />;
+}
+
+

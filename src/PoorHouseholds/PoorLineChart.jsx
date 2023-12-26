@@ -10,7 +10,7 @@ function App() {
 
     data.forEach((d) => {
       d.year = parseInt(d.year);
-      d.value = parseInt(d.value);
+      d.value = parseFloat(d["toàn quốc"])
     });
     console.log(data);
 

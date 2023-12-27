@@ -44,3 +44,16 @@ button {
   padding: 0.6rem 1rem;
   background-color: #f9fafb;
 }
+
+.sideBar {
+  width: 30%;
+}
+
+.content {
+  width: 65%;
+  margin-top: 40px;
+  /* height: 100px; */
+  overflow: hidden;
+  height: max-content;
+  background: white;
+}

@@ -5,6 +5,7 @@ const Graph = () => {
     return {
       year: d["Year"],
       year1: parseFloat(d["Toàn Quốc"]),
+      // content: d
     };
   }
   d3.csv(
@@ -42,10 +43,9 @@ const Graph = () => {
           "<br> Year: " +
             d.year +
             "<br>" +
-            "Percentage: " +
+            "Highest Percentage: " +
             d.year1 +
-            "<br>" +
-            "<br>"
+            "<br>" 
         );
     };
     var mouseleave = function (event, d) {

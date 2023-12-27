@@ -30,6 +30,7 @@ export default class Chart extends Component {
       "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/TongDanSo.csv"
     )
       .then((data) => {
+
         let year2016 = "2016";
         let year2017 = "2017";
         let year2018 = "2018";
@@ -55,7 +56,6 @@ export default class Chart extends Component {
             confirmYear2021: parseInt(d[year2021]),
           };
         });
-        console.log(dataByConvince);
         this.draw(dataByConvince);
       })
       .catch((err) => {
@@ -64,7 +64,6 @@ export default class Chart extends Component {
   }
 
   draw(data) {
-    console.log(data);
     // set the dimensions and margins of the graph
     var margin = { top: 10, right: 30, bottom: 30, left: 60 },
       width = 800 - margin.left - margin.right,
@@ -105,7 +104,16 @@ export default class Chart extends Component {
     var y = d3
       .scaleLinear()
       .domain([
-        300000,
+        d3.min(data, function (d) {
+          return d3.min([
+            d.confirmYear2016,
+            d.confirmYear2017,
+            d.confirmYear2018,
+            d.confirmYear2019,
+            d.confirmYear2020,
+            d.confirmYear2021,
+          ]);
+        }),
         d3.max(data, function (d) {
           return d3.max([
             d.confirmYear2016,

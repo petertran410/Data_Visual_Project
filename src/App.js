@@ -14,11 +14,11 @@ function App() {
     <div className="">
       <Router>
         <div className="d-flex">
-          <div>
+          <div className="sideBar">
             {/* <ColSideBar /> */}
             <Sidebar />
           </div>
-          <div className="ml-5 w-50 mt-5">
+          <div className="content">
             <Routes>
               {/* <Route path="/" element={<Home />} /> */}
               <Route path="/Density" element={<Density />} />

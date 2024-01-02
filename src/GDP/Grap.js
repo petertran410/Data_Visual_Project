@@ -109,7 +109,7 @@ export default class Graph extends Component {
     console.log(data);
     // set the dimensions and margins of the graph
     var margin = { top: 10, right: 30, bottom: 30, left: 60 },
-      width = 800 - margin.left - margin.right,
+      width = 1000 - margin.left - margin.right,
       height = 600 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
@@ -133,7 +133,7 @@ export default class Graph extends Component {
         "year2022",
       ])
       .range([0, width])
-      .padding(0.1);
+      .padding(0.3);
     svg
       .append("g")
       .attr("transform", "translate(0," + height + ")")

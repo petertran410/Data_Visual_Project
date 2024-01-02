@@ -46,12 +46,16 @@ button {
 }
 
 .sideBar {
-  width: 30%;
+  /* width: 30%; */
 }
 
 .content {
   width: 65%;
-  margin-top: 40px;
+  margin-top: 100px;
+  margin-left: 10%;
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-top: 40px;
   /* height: 100px; */
   overflow: hidden;
   height: max-content;

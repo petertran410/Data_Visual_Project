@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default function ColSideBar() {
   return (
-    <div className="mr-3 flex flex-col">
+    <div className="flex flex-col">
       <NavLink to="/" className="btn btn-success">
         Home
       </NavLink>

@@ -45,9 +45,9 @@ button {
   background-color: #f9fafb;
 }
 
-.sideBar {
-  /* width: 30%; */
-}
+/* .sideBar {
+  width: 30%;
+} */
 
 .content {
   width: 65%;
@@ -59,5 +59,5 @@ button {
   /* height: 100px; */
   overflow: hidden;
   height: max-content;
-  background: white;
+  /* background: white; */
 }

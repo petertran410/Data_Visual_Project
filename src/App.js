@@ -6,8 +6,8 @@ import Age from "./Age/Age";
 // import Sidebar from "./Sidebar/Sidebar";
 import PoorHouseholds from "./PoorHouseholds/PoorHouseholds";
 import GDP from "./GDP/GDP";
-import ColSideBar from "./Sidebar/ColSideBar";
-import Home from "./Home/Home";
+// import ColSideBar from "./Sidebar/ColSideBar";
+import Home from "./Home-2/Home";
 import Sidebar from "./Sidebar/Sidebar";
 function App() {
   return (

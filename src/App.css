@@ -45,19 +45,19 @@ button {
   background-color: #f9fafb;
 }
 
-.sideBar {
+/* .sideBar { */
   /* width: 30%; */
-}
+/* } */
 
 .content {
   width: 65%;
-  margin-top: 100px;
+  margin-top: 1.5%;
   margin-left: 10%;
-  padding-bottom: 40px;
-  padding-left: 40px;
-  padding-top: 40px;
+  /* padding-bottom: 10%; */
+  /* padding-left: 10%; */
+  /* padding-top: 10%; */
   /* height: 100px; */
   overflow: hidden;
   height: max-content;
-  background: white;
+  /* background: white; */
 }

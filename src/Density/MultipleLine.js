@@ -6,6 +6,7 @@ export default class Chart extends Component {
     super(props);
     this.state = {
       selectedConvince: this.getConvinceFromURL() || "Ha Noi",
+      isOpen: false,
     };
     this.infoChart = this.infoChart.bind(this);
     this.draw = this.draw.bind(this);
@@ -160,14 +161,36 @@ export default class Chart extends Component {
   handleConvinceChange(event) {
     const newConvince = event.target.value;
     this.setState({ selectedConvince: newConvince }, () => {
-      // Add a random query parameter to force a complete reload
       const randomQuery = Math.random().toString(36).substring(7);
       window.location.href = `${window.location.origin}${window.location.pathname}?convince=${newConvince}&${randomQuery}`;
     });
   }
 
+  handleToggleDropdown = () => {
+    this.setState((prevState) => ({
+      isOpen: !prevState.isOpen,
+    }));
+  };
+
+  handleCheckboxChange = (convince) => {
+    this.setState((prevState) => {
+      const selectedConvinces = prevState.selectedConvinces || [];
+      const isChecked = selectedConvinces.includes(convince);
+
+      let updatedConvinces;
+
+      if (isChecked) {
+        updatedConvinces = selectedConvinces.filter((c) => c !== convince);
+      } else {
+        updatedConvinces = [...selectedConvinces, convince];
+      }
+
+      return { selectedConvinces: updatedConvinces };
+    });
+  };
+
   render() {
-    const { selectedConvince } = this.state;
+    const { selectedConvinces, isOpen } = this.state;
     const convinceOptions = [
       "Ha Noi",
       "Ha Giang",
@@ -235,14 +258,27 @@ export default class Chart extends Component {
     ];
     return (
       <div>
-        <label>Select CONVINCE:</label>
-        <select value={selectedConvince} onChange={this.handleConvinceChange}>
-          {convinceOptions.map((convince) => (
-            <option key={convince} value={convince}>
-              {convince}
-            </option>
-          ))}
-        </select>
+        <label>Select CONVINCES:</label>
+        <div className="dropdown">
+          <div className="dropdown-toggle" onClick={this.handleToggleDropdown}>
+            {isOpen ? "Close" : "Open"} Convinces
+          </div>
+          {isOpen && (
+            <div className="dropdown-content">
+              {convinceOptions.map((convince) => (
+                <label key={convince} className="checkbox-option">
+                  <input
+                    type="checkbox"
+                    value={convince}
+                    checked={selectedConvinces?.includes(convince)}
+                    onChange={() => this.handleCheckboxChange(convince)}
+                  />
+                  {convince}
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
         <div className="drawChart" id="drawChart"></div>
       </div>
     );

@@ -30,7 +30,6 @@ export default class Chart extends Component {
       "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/TongDanSo.csv"
     )
       .then((data) => {
-
         let year2016 = "2016";
         let year2017 = "2017";
         let year2018 = "2018";
@@ -150,18 +149,17 @@ export default class Chart extends Component {
         d3
           .line()
           .x(function (d) {
-            return x(d.year) + x.bandwidth() / 2; // Adjust for band scale positioning
-          }) // Use x scale to map the year to x-coordinate
+            return x(d.year) + x.bandwidth() / 2;
+          })
           .y(function (d) {
             return y(d.confirm);
-          }) // Use y scale to map the confirmation to y-coordinate
+          })
       );
   }
 
   handleConvinceChange(event) {
     const newConvince = event.target.value;
     this.setState({ selectedConvince: newConvince }, () => {
-      // Add a random query parameter to force a complete reload
       const randomQuery = Math.random().toString(36).substring(7);
       window.location.href = `${window.location.origin}${window.location.pathname}?convince=${newConvince}&${randomQuery}`;
     });

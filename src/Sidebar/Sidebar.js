@@ -1,7 +1,5 @@
 import React from "react";
 import { AnimatePresence, motion, useCycle } from "framer-motion";
-// import { itemVariants, sideVariants } from "../motion/motion";
-// import { BiHomeAlt2, BiWindowClose } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
@@ -39,8 +37,8 @@ export default function Sidebar() {
 
 const links = [
   { name: "Home", to: "/", id: 1 },
-  { name: "Population By Density", to: "/Density", id: 2 },
-  { name: "Population By Age", to: "/Age", id: 3 },
-  { name: "Population By GDP", to: "/GDP", id: 4 },
-  { name: "The rate of poor households", to: "/PoorHouseholds", id: 5 },
+  { name: "Population by province", to: "/Density", id: 2 },
+  { name: "Population By gender/age", to: "/Age", id: 3 },
+  { name: "GDP by province", to: "/GDP", id: 4 },
+  { name: "Rate of poor households by province", to: "/PoorHouseholds", id: 5 },
 ];

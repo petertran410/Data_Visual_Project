@@ -28,6 +28,10 @@ aside {
   margin: 0 auto;
 }
 
+.sideBarContainer {
+  border: 1px solid black;
+}
+
 .sideBarContainer a {
   color: #f9fafb;
   text-decoration: none;

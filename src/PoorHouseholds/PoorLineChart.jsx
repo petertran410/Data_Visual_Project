@@ -1,72 +1,90 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import * as d3 from "d3";
 
-function PoorLineChart() {
-  const [data] = useState([32, 44, 59, 72, 40]);
+function App() {
+  const createGraph = async () => {
+    // read data from csv and format variables
+    let data = await d3.csv(
+      "https://raw.githubusercontent.com/tainguynnn/DSA_minesweeper/main/test.csv"
+    );
 
-  const svgRef = useRef();
+    data.forEach((d) => {
+      d.year = parseInt(d.year);
+      d.value = parseFloat(d["toàn quốc"]);
+    });
+    console.log(data);
 
-  useEffect(() => {
-    // setting up svg
+    // set the dimensions and margins of the graph
+    var margin = { top: 20, right: 20, bottom: 50, left: 70 },
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
 
-    const w = 1000;
-    const h = 100;
+    // append the svg object to the body of the page
+    var svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    const svg = d3
-      .select(svgRef.current)
-      .attr("width", w)
-      .attr("height", h * 6)
-      .style("background", "#d3d3d3")
-      .style("margin-top", "50px")
-      .style("overflow", "visible");
+    // add X axis and Y axis
+    var x = d3.scaleLinear().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
 
-    // setting the scaling
-    const xScale = d3
-      .scaleLinear()
-      .domain([0, data.length - 1])
-      .range([0, w]);
-
-    const yScale = d3
-      .scaleLinear()
-      .domain([0, h])
-      .range([h * 6, 0]);
-
-    const generateScaledLine = d3
-      .line()
-      .x((d, i) => xScale(i))
-      .y(yScale)
-      .curve(d3.curveCardinal);
-    // setting the axes
-
-    const xAxis = d3
-      .axisBottom(xScale)
-      .ticks(data.length)
-      .tickFormat((i) => i + 2016);
-
-    const yAxis = d3.axisLeft(yScale).ticks(6);
+    x.domain(
+      d3.extent(data, (d) => {
+        return d.year;
+      })
+    );
+    y.domain([
+      0,
+      d3.max(data, (d) => {
+        return d.value;
+      }),
+    ]);
 
     svg
       .append("g")
-      .call(xAxis)
-      .attr("transform", `translate(0, ${h * 6})`);
+      .attr("transform", `translate(0, ${height})`)
+      .call(
+        d3.axisBottom(x).ticks(
+          d3.max(data, (d) => {
+            return d.year;
+          }) -
+            d3.min(data, (d) => {
+              return d.year;
+            })
+        )
+      );
 
-    svg.append("g").call(yAxis);
+    svg.append("g").call(d3.axisLeft(y));
 
-    // setting up the data for the svg
+    // add the Line
+    var valueLine = d3
+      .line()
+      .x((d) => {
+        return x(d.year);
+      })
+      .y((d) => {
+        return y(d.value);
+      });
+
     svg
-      .selectAll(".line")
+      .append("path")
       .data([data])
-      .join("path")
-      .attr("d", (d) => generateScaledLine(d))
+      .attr("class", "line")
       .attr("fill", "none")
-      .attr("stroke", "black");
-  }, [data]);
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5)
+      .attr("d", valueLine);
+  };
 
-  return (
-    <div>
-      <svg ref={svgRef}></svg>
-    </div>
-  );
+  useEffect(() => {
+    createGraph();
+  }, []);
+
+  return <></>;
 }
 
-export default PoorLineChart;
+export default App;

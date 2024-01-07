@@ -30,7 +30,6 @@ export default class Chart extends Component {
       "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/TongDanSo.csv"
     )
       .then((data) => {
-
         let year2016 = "2016";
         let year2017 = "2017";
         let year2018 = "2018";

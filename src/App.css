@@ -1,7 +1,7 @@
 body {
   /* background-color: #1a0554; */
   font-family: "Roboto", sans-serif;
-  background-color: #d6bebe;
+  background-color: #F8DFD4;
 }
 
 main {
@@ -45,9 +45,9 @@ button {
   background-color: #f9fafb;
 }
 
-/* .sideBar { */
+.sideBar {
   /* width: 30%; */
-/* } */
+}
 
 .content {
   width: 65%;

@@ -8,7 +8,6 @@ export default class Chart extends Component {
     this.draw = this.draw.bind(this);
   }
   componentDidMount() {
-    // Call the infoChart method when the component is mounted
     this.infoChart();
   }
 

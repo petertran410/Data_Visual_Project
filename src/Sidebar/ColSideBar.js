@@ -10,7 +10,7 @@ export default function ColSideBar() {
       <NavLink to="/Density" className="btn btn-success">
         Density
       </NavLink>
-      <NavLink to="/Age" className="btn btn-success">
+      <NavLink to="/Diploma" className="btn btn-success">
         Age
       </NavLink>
       <NavLink to="/GDP" className="btn btn-success">

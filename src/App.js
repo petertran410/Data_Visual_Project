@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Change import to use Routes
 import "./App.css";
 import Density from "./Density/Density";
-import Age from "./Age/Age";
+import Diploma from "./Diploma/Diploma";
 // import Sidebar from "./Sidebar/Sidebar";
 import PoorHouseholds from "./PoorHouseholds/PoorHouseholds";
 import GDP from "./GDP/GDP";
@@ -23,7 +23,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/Density" element={<Density />} />
               <Route path="/GDP" element={<GDP />} />
-              <Route path="/Age" element={<Age />} />
+              <Route path="/Diploma" element={<Diploma />} />
               <Route path="/PoorHouseholds" element={<PoorHouseholds />} />
             </Routes>
           </div>

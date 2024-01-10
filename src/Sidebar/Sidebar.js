@@ -38,7 +38,7 @@ export default function Sidebar() {
 const links = [
   { name: "Home", to: "/", id: 1 },
   { name: "Population by province", to: "/Density", id: 2 },
-  { name: "Population By gender/age", to: "/Age", id: 3 },
+  { name: "Diploma", to: "/Diploma", id: 3 },
   { name: "GDP by province", to: "/GDP", id: 4 },
   { name: "Rate of poor households by province", to: "/PoorHouseholds", id: 5 },
 ];

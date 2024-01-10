@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
 
-export default class draw  extends Component {
+export default class DiplomaChart  extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +27,7 @@ export default class draw  extends Component {
   infoChart() {
     const { selectedConvince } = this.state;
     d3.csv(
-      "https://raw.githubusercontent.com/petertran410/data_visual_project/GDP/TocDoTangTruongGRDP2.csv"
+      "https://raw.githubusercontent.com/petertran410/data_visual_project/diploma/TyLeLaoDongQuaDaoTao.csv"
     )
       .then((data) => {
         console.log(data);

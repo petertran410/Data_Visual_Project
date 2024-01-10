@@ -1,10 +1,10 @@
-import draw from './draw'
+import DiplomaChart from './DiplomaChart'
 import React from 'react'
 
 const Diploma = () => {
     return (
       <div className='diploma' id="Diploma">
-        <draw />
+        <DiplomaChart />
       </div>
     )
   }

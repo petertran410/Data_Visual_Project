@@ -192,7 +192,7 @@ const Chart = () => {
     });
   }, []);
 
-  return <div id="viz_container">{}</div>;
+  return <div id="viz_container"></div>;
 };
 
 export default Chart;

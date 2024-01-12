@@ -1,5 +1,5 @@
 import React from "react";
-import DrawChart from "./DrawChart";
+// import DrawChart from "./DrawChart";
 import MultipleLine from "./MultipleLine";
 
 const Density = () => {

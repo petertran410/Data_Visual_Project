@@ -258,7 +258,6 @@ export default class Chart extends Component {
     ];
     return (
       <div>
-        <label>Select CONVINCES:</label>
         <div className="dropdown">
           <div className="dropdown-toggle" onClick={this.handleToggleDropdown}>
             {isOpen ? "Close" : "Open"} Convinces

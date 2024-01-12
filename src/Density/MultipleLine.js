@@ -87,52 +87,6 @@ export default class Chart extends Component {
       });
   }
 
-  // infoChart() {
-  //   const { selectedConvinces } = this.state;
-  //   d3.csv(
-  //     "https://raw.githubusercontent.com/petertran410/data_visual_project/tranngocnhan/src/Density/TongDanSo.csv"
-  //   )
-  //     .then((data) => {
-  //       let year2016 = "2016";
-  //       let year2017 = "2017";
-  //       let year2018 = "2018";
-  //       let year2019 = "2019";
-  //       let year2020 = "2020";
-  //       let year2021 = "2021";
-
-  //       let filteredData = data.filter((d) =>
-  //         selectedConvinces.includes(d.CONVINCE)
-  //       );
-
-  //       let dataByConvinces = selectedConvinces.map((convince) => {
-  //         return filteredData.map(function (d) {
-  //           return {
-  //             convince: d.CONVINCE,
-  //             year2016: year2016,
-  //             confirmYear2016: parseInt(d[year2016]),
-  //             year2017: year2017,
-  //             confirmYear2017: parseInt(d[year2017]),
-  //             year2018: year2018,
-  //             confirmYear2018: parseInt(d[year2018]),
-  //             year2019,
-  //             confirmYear2019: parseInt(d[year2019]),
-  //             year2020,
-  //             confirmYear2020: parseInt(d[year2020]),
-  //             year2021,
-  //             confirmYear2021: parseInt(d[year2021]),
-  //           };
-  //         });
-  //       });
-
-  //       // Flatten the array
-  //       let flattenedData = [].concat(...dataByConvinces);
-  //       this.draw(flattenedData);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
-
   draw(data) {
     var margin = { top: 10, right: 30, bottom: 30, left: 60 },
       width = 800 - margin.left - margin.right,

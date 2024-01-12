@@ -327,8 +327,12 @@ export default class Chart extends Component {
 
     return (
       <div>
-        <label>Select CONVINCES:</label>
-        
+        <div className="select-btn">
+          <span className="btn-text">Select convince</span>
+          <span className="arrow-down">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </div>
         <ul className="list-items">
           {convinceOptions.map((convince) => (
             <li className="items">

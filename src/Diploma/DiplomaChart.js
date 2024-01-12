@@ -142,14 +142,14 @@ export default class DiplomaChart  extends Component {
       .style("text-anchor", "end")
       .attr("font-size", "15px")
       .attr("dx", "1.55em")
-      .attr("dy", ".55em")
+      .attr("dy", ".1em")
     // .attr("transform", "rotate(-90)");
 
     // Add Y axis
     var y = d3
       .scaleLinear()
       .domain([
-        0, 20
+        0, 100
       ])
       .range([height, 0]);
 
@@ -175,7 +175,7 @@ export default class DiplomaChart  extends Component {
       .attr("x", (d) => x(d.year))
       .attr("y", (d) => y(d.confirm))
       .attr("width", x.bandwidth())
-      .attr("height", (d) => d.confirm * 28)
+      .attr("height", (d) => d.confirm * 5.6)
       .attr("fill", "steelblue")
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)
@@ -198,7 +198,7 @@ export default class DiplomaChart  extends Component {
       .text((d) => d.confirm + "%")
       .attr("x", (d) => x(d.year) + x.bandwidth() / 2)
       .attr("y", (d) => y(d.confirm))
-      .attr("dy", "1.5em") // Offset by half the height of the text to center it
+      .attr("dy", "1em") // Offset by half the height of the text to center it
       .attr("text-anchor", "middle")
 
     svg
@@ -214,7 +214,7 @@ export default class DiplomaChart  extends Component {
       .append("text")
       .attr("text-anchor", "middle")
       .attr("x", 200)
-      .attr("y", 5)
+      .attr("y", 10)
       .text("Population own diploma (%)")
       .attr("font-family", "times new roman")
       .attr("font-size", "20px");

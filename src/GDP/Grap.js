@@ -109,7 +109,8 @@ export default class Graph extends Component {
     console.log(data);
     // set the dimensions and margins of the graph
     var margin = { top: 10, right: 30, bottom: 30, left: 60 },
-      width = 1000 - margin.left - margin.right,
+      // width = 1000 - margin.left - margin.right,
+      width = 600 - margin.left - margin.right,
       height = 600 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page

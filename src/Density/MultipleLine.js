@@ -6,7 +6,7 @@ export default class Chart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedConvince: this.getConvinceFromURL() || "Ha Giang",
+      selectedConvince: this.getConvinceFromURL() || "Ha Noi",
     };
     this.infoChart = this.infoChart.bind(this);
     this.draw = this.draw.bind(this);
@@ -258,7 +258,7 @@ export default class Chart extends Component {
   // }
 
   render() {
-    const { selectedConvince} = this.state;
+    const { selectedConvince } = this.state;
     const convinceOptions = [
       "Ha Noi",
       "Ha Giang",
@@ -328,26 +328,7 @@ export default class Chart extends Component {
     return (
       <div>
         <label>Select CONVINCES:</label>
-        <div className="dropdown">
-          <div className="dropdown-toggle" onClick={this.handleToggleDropdown}>
-            {isOpen ? "Close" : "Open"} Convinces
-          </div>
-          {isOpen && (
-            <div className="dropdown-content">
-              {convinceOptions.map((convince) => (
-                <label key={convince} className="checkbox-option">
-                  <input
-                    type="checkbox"
-                    value={convince}
-                    checked={selectedConvinces?.includes(convince)}
-                    onChange={() => this.handleCheckboxChange(convince)}
-                  />
-                  {convince}
-                </label>
-              ))}
-            </div>
-          )}
-        </div>
+        
         <ul className="list-items">
           {convinceOptions.map((convince) => (
             <li className="items">

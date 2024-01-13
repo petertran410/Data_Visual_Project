@@ -1,12 +1,10 @@
 import React from "react";
 import DrawChart from "./DrawChart";
-import MultipleLine from "./MultipleLine";
 
 const Density = () => {
   return (
-    <div className="density" id="Density">
+    <div className="density content flex justify-center" id="Density">
       <DrawChart />
-      {/* <MultipleLine /> */}
     </div>
   );
 };

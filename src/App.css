@@ -50,14 +50,8 @@ button {
 }
 
 .content {
-  width: 65%;
-  margin-top: 1.5%;
-  margin-left: 10%;
-  /* padding-bottom: 10%; */
-  /* padding-left: 10%; */
-  /* padding-top: 10%; */
-  /* height: 100px; */
+  margin-top: 150px;
+  margin-left: 150px;
   overflow: hidden;
-  height: max-content;
-  /* background: white; */
+  height: auto;
 }

@@ -2,17 +2,17 @@ import React, { useEffect } from "react";
 import * as d3 from "d3";
 import { select } from "d3-selection";
 import { zoom } from "d3-zoom";
-import { geoPath, geoAlbers } from "d3-geo";
+import { geoPath } from "d3-geo";
 import { scaleQuantize } from "d3-scale";
 import { csv, json } from "d3-fetch";
 
 export default function VNMap() {
   useEffect(() => {
-    var width = 1000;
-    var height = 1000;
+    var width = 800;
+    var height = 800;
 
     var zoomHandler = zoom()
-      .scaleExtent([1, 40])
+      .scaleExtent([1, 60])
       .translateExtent([
         [0, 0],
         [width, height],
@@ -37,14 +37,12 @@ export default function VNMap() {
       .rotate([2, 32])
       .parallels([11, 20])
       .scale([2000])
-      .translate([width / 30, height / 1.8]);
+      .translate([width / 6, height / 1.2]);
     const path = geoPath().projection(projection);
 
     var colorScale = scaleQuantize().range([
       "rgb(198, 151, 116)",
       "rgb(99, 126, 118)",
-      // "rgb(196, 185, 255)",
-      // "rgb(209, 185, 255)",
     ]);
 
     var tooltip = select("body")
@@ -57,10 +55,10 @@ export default function VNMap() {
     ).then((data) => {
       colorScale.domain([
         d3.min(data, function (d) {
-          return d.Confirm, d.Density;
+          return (d.Confirm, d.Density);
         }),
         d3.max(data, function (d) {
-          return d.Confirm, d.Density;
+          return (d.Confirm, d.Density);
         }),
       ]);
 
@@ -135,10 +133,6 @@ export default function VNMap() {
     function zoomed(event) {
       g.selectAll("path").attr("transform", event.transform);
     }
-
-    return () => {
-      // Cleanup code if needed
-    };
   }, []);
 
   return <div className="drawChart" id="drawChart"></div>;

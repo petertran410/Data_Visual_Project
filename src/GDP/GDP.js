@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import Graph from './Grap';
+import React from "react";
+import Graph from "./Grap";
 
 const GDP = () => {
   return (
-    <div className='GDP flex' id="GDP">
+    <div className="GDP content flex justify-center" id="GDP">
       <Graph />
     </div>
-  )
-}
+  );
+};
 
 export default GDP;

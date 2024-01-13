@@ -3,7 +3,7 @@ import VNMap from "./VNMap";
 
 export default function Home() {
   return (
-    <div>
+    <div className="content-home flex justify-center">
       <VNMap />
     </div>
   );

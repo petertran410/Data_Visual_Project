@@ -304,7 +304,7 @@ export default class Graph extends Component {
     return (
       <div>
         <label>Select CONVINCE:</label>
-        <select value={selectedConvince} onChange={this.handleConvinceChange}>
+        <select value={selectedConvince} onChange={this.handleConvinceChange} className="border-2 border-black ml-1">
           {convinceOptions.map((convince) => (
             <option key={convince} value={convince}>
               {convince}

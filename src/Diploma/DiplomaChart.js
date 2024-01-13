@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
 
-export default class DiplomaChart  extends Component {
+export default class DiplomaChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,7 +56,7 @@ export default class DiplomaChart  extends Component {
             year2021,
             confirmYear2021: parseFloat(d[year2021]),
             year2022: year2022,
-            confirmYear2022: parseFloat(d[year2022])
+            confirmYear2022: parseFloat(d[year2022]),
           };
         });
         console.log(dataByConvince);
@@ -68,7 +68,6 @@ export default class DiplomaChart  extends Component {
   }
 
   draw(data) {
-
     var Tooltip = d3
       .select("#drawChart")
       .append("div")
@@ -142,23 +141,14 @@ export default class DiplomaChart  extends Component {
       .style("text-anchor", "end")
       .attr("font-size", "15px")
       .attr("dx", "1.55em")
-      .attr("dy", ".55em")
+      .attr("dy", ".1em");
     // .attr("transform", "rotate(-90)");
 
     // Add Y axis
-    var y = d3
-      .scaleLinear()
-      .domain([
-        0, 20
-      ])
-      .range([height, 0]);
+    var y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
 
     svg.append("g").call(d3.axisLeft(y));
 
-    // Add the line
-
-
-    // Add the line
     svg
       .selectAll("rect")
       .data([
@@ -175,11 +165,11 @@ export default class DiplomaChart  extends Component {
       .attr("x", (d) => x(d.year))
       .attr("y", (d) => y(d.confirm))
       .attr("width", x.bandwidth())
-      .attr("height", (d) => d.confirm * 28)
-      .attr("fill", "steelblue")
+      .attr("height", (d) => d.confirm * 5.6)
+      .attr("fill", "#91a8b4")
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)
-      .on("mouseleave", mouseleave)
+      .on("mouseleave", mouseleave);
 
     svg
       .selectAll("text.label")
@@ -195,11 +185,12 @@ export default class DiplomaChart  extends Component {
       .enter()
       .append("text")
       .attr("class", "label")
+      .attr("fill", "white")
       .text((d) => d.confirm + "%")
       .attr("x", (d) => x(d.year) + x.bandwidth() / 2)
       .attr("y", (d) => y(d.confirm))
-      .attr("dy", "1.5em") // Offset by half the height of the text to center it
-      .attr("text-anchor", "middle")
+      .attr("dy", "1em") // Offset by half the height of the text to center it
+      .attr("text-anchor", "middle");
 
     svg
       .append("text")
@@ -214,13 +205,11 @@ export default class DiplomaChart  extends Component {
       .append("text")
       .attr("text-anchor", "middle")
       .attr("x", 200)
-      .attr("y", 5)
-      .text("Population own diploma (%)")
+      .attr("y", 10)
+      .text("Proportion of qualified trained workers (%)")
       .attr("font-family", "times new roman")
       .attr("font-size", "20px");
   }
-
-
 
   handleConvinceChange(event) {
     const newConvince = event.target.value;
@@ -298,11 +287,10 @@ export default class DiplomaChart  extends Component {
       "Sóc Trăng",
       "Bạc Liêu",
       "Cà Mau",
-      
     ];
     return (
       <div>
-        <label>Select CONVINCE:</label>
+        <label>Select convince:</label>
         <select value={selectedConvince} onChange={this.handleConvinceChange}>
           {convinceOptions.map((convince) => (
             <option key={convince} value={convince}>

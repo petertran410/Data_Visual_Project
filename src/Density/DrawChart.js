@@ -96,8 +96,8 @@ export default class Chart extends Component {
       .selectAll("text")
       .style("text-anchor", "end")
       .attr("dx", "-.50em")
-      .attr("dy", "-.55em")
-      .attr("transform", "rotate(-90)");
+      .attr("dy", "1em")
+      .attr("transform", "rotate(0)");
 
     // Add Y axis
     var y = d3
@@ -142,8 +142,8 @@ export default class Chart extends Component {
       ])
 
       .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
+      .attr("stroke", "#91a8b4")
+      .attr("stroke-width", 5)
       .attr(
         "d",
         d3
@@ -234,9 +234,9 @@ export default class Chart extends Component {
       "Ca Mau",
     ];
     return (
-      <div>
-        <label>Select CONVINCE:</label>
-        <select value={selectedConvince} onChange={this.handleConvinceChange}>
+      <div >
+        <label>Select convince:</label>
+        <select value={selectedConvince} onChange={this.handleConvinceChange} className="border-2 border-black ml-1">
           {convinceOptions.map((convince) => (
             <option key={convince} value={convince}>
               {convince}
@@ -244,7 +244,6 @@ export default class Chart extends Component {
           ))}
         </select>
         <div>
-          <div className="drawChart" id="drawChart"></div>
           <div className="drawChart" id="drawChart"></div>
         </div>
       </div>

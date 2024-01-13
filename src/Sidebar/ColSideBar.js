@@ -9,28 +9,28 @@ export default function ColSideBar() {
         onClick={() => {
           navigate("/");
         }}
-        className="btn btn-success">
+        className="button text-white">
         Home
       </button>
       <button
         onClick={() => {
           navigate("/Density");
         }}
-        className="btn btn-success">
-        Density
+        className="button text-white">
+        Population
       </button>
       <button
         onClick={() => {
           navigate("/GDP");
         }}
-        className="btn btn-success">
+        className="button text-white">
         GDP
       </button>
       <button
         onClick={() => {
           navigate("/Diploma");
         }}
-        className="btn btn-success">
+        className="button text-white">
         Diploma
       </button>
     </div>

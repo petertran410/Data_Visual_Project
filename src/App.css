@@ -1,7 +1,7 @@
 body {
   /* background-color: #1a0554; */
   font-family: "Roboto", sans-serif;
-  background-color: #F8DFD4;
+  background-color: #edeae5;
 }
 
 main {
@@ -43,10 +43,19 @@ aside {
 
 button {
   cursor: pointer;
+  width: 200px;
+  height: 80px;
   margin: 1.25rem;
   border: none;
   padding: 0.6rem 1rem;
-  background-color: #f9fafb;
+  background-color: #91a8b4;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
 }
 
 .content {

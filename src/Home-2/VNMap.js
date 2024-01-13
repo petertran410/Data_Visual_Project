@@ -37,7 +37,7 @@ export default function VNMap() {
       .rotate([2, 32])
       .parallels([11, 20])
       .scale([2000])
-      .translate([width / 6, height / 1.2]);
+      .translate([width / 5, height / 1.2]);
     const path = geoPath().projection(projection);
 
     var colorScale = scaleQuantize().range([
@@ -136,5 +136,13 @@ export default function VNMap() {
     }
   }, []);
 
-  return <div className="drawChart" id="drawChart"></div>;
+  return (
+    <div
+      className="drawChart border-4 border-black bg-white ml-20 pl-8">
+      <h1 className="flex justify-center items-center font-bold text-lg">
+        MAP POPULATION OF VIETNAM
+      </h1>
+      <div id="drawChart"></div>
+    </div>
+  );
 }

@@ -115,8 +115,6 @@ export default function VNMap() {
 
             tooltip.html(
               d.properties.province.bold() +
-                " <br>Cases: " +
-                d.properties.cases.bold() +
                 " <br>Density: " +
                 d.properties.density.bold()
             );

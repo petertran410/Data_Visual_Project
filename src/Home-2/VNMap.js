@@ -51,14 +51,14 @@ export default function VNMap() {
       .style("opacity", 0);
 
     csv(
-      "https://raw.githubusercontent.com/petertran410/data_visual_project/Test/province_changed"
+      "https://raw.githubusercontent.com/petertran410/data_visual_project/main/src/Home-2/MapData.csv"
     ).then((data) => {
       colorScale.domain([
         d3.min(data, function (d) {
-          return d.Confirm && d.Density;
+          return d.Diploma && d.Population;
         }),
         d3.max(data, function (d) {
-          return d.Confirm && d.Density;
+          return d.Diploma && d.Population;
         }),
       ]);
 
@@ -72,9 +72,10 @@ export default function VNMap() {
           );
 
           if (correspondingData) {
-            feature.properties.cases = correspondingData.Confirm;
             feature.properties.province = correspondingData.Province;
-            feature.properties.density = correspondingData.Density;
+            feature.properties.population = correspondingData.Population;
+            feature.properties.diploma = correspondingData.Diploma;
+            feature.properties.gdp = correspondingData.GDP;
           }
         });
 
@@ -85,7 +86,8 @@ export default function VNMap() {
           .append("path")
           .attr("d", path)
           .style("fill", function (d) {
-            var value = d.properties.cases && d.properties.density;
+            var value =
+              d.properties.diploma && d.properties.population && d.properties.gdp;
 
             console.log(map);
             if (value > 0) {
@@ -114,9 +116,10 @@ export default function VNMap() {
               .style("left", event.pageX + 10 + "px");
 
             tooltip.html(
+              "<strong>Province: </strong>" + 
               d.properties.province.bold() +
-                " <br>Density: " +
-                d.properties.density.bold()
+                " <br><strong>Population: </strong>" +
+              d.properties.population.bold()
             );
           })
           .on("mouseout", function (event, d) {
@@ -135,8 +138,7 @@ export default function VNMap() {
   }, []);
 
   return (
-    <div
-      className="drawChart border-4 border-black bg-white ml-20 pl-8">
+    <div className="drawChart border-4 border-black bg-white ml-20 pl-8">
       <h1 className="flex justify-center items-center font-bold text-lg">
         MAP POPULATION OF VIETNAM
       </h1>

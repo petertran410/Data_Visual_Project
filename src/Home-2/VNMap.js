@@ -55,10 +55,10 @@ export default function VNMap() {
     ).then((data) => {
       colorScale.domain([
         d3.min(data, function (d) {
-          return (d.Confirm, d.Density);
+          return d.Confirm, d.Density;
         }),
         d3.max(data, function (d) {
-          return (d.Confirm, d.Density);
+          return d.Confirm, d.Density;
         }),
       ]);
 
@@ -87,6 +87,7 @@ export default function VNMap() {
           .style("fill", function (d) {
             var value = d.properties.cases && d.properties.density;
 
+            console.log(map);
             if (value > 0) {
               return colorScale(value);
             } else {

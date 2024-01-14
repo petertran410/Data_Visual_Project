@@ -14,10 +14,10 @@
 ### Tasks and Contribution 
 | Index | Role                                                         | Person In Charge | Contribution |Tasks|
 |:------|:-------------------------------------------------------------|:--------------:|:------------:|:-------------------------------------------------------------|
-| 1     | Leader     |   Trần Ngọc Nhân   |          25%      |Overall Framework, Design Population Graph, Report, PowerPoint   |   
-| 2     | Member      |   Nguyễn Hoàng Thiên Phúc   |          25%     |Design GDP Graph, Report, PowerPoint    |    
-| 3     | Member  |  Nguyễn Huỳnh Anh Tú     |      25%         |  Design Diploma Graph, Report, PowerPoint  |     
-| 4     | Member |     Phạm Lê Huy     |         25%     | Design Map VIETNAM, Report, PowerPoint|  
-| 5     | Member |     Nguyễn Lê Thành Tài     |         25%     | Design Map VIETNAM, Report, PowerPoint |        
+| 1     | Leader     |   Trần Ngọc Nhân   |          20%      |Overall Framework, Design Population Graph, Report, PowerPoint   |   
+| 2     | Member      |   Nguyễn Hoàng Thiên Phúc   |          20%     |Design GDP Graph, Report, PowerPoint    |    
+| 3     | Member  |  Nguyễn Huỳnh Anh Tú     |      20%         |  Design Diploma Graph, Report, PowerPoint  |     
+| 4     | Member |     Phạm Lê Huy     |         20%     | Design Map VIETNAM, Report, PowerPoint|  
+| 5     | Member |     Nguyễn Lê Thành Tài     |         20%     | Design Map VIETNAM, Report, PowerPoint |        
 
 

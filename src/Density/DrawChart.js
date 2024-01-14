@@ -27,7 +27,7 @@ export default class Chart extends Component {
   infoChart() {
     const { selectedConvince } = this.state;
     d3.csv(
-      "https://raw.githubusercontent.com/petertran410/data_visual_project/main/src/Density/TongDanSo.csv"
+      "https://github.com/petertran410/data_visual_project/blob/main/src/Density/TongDanSo.csv"
     )
       .then((data) => {
         let year2016 = "2016";

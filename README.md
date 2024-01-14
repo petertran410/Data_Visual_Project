@@ -9,7 +9,7 @@
 | 2     | Nguyễn Hoàng Thiên Phúc | ITITIU20279 | nguyenhoangthienphuc1802@gmail.com | thienphuc1802 |
 | 3     | Nguyễn Huỳnh Anh Tú | ITITIU20337 | tu.0909023518@gmail.com | ITITIU20337 |
 | 4     | Nguyễn Lê Thành Tài | TITIU20298 | Thanhtainguyenle@gmail.com | tainguynnn | 
-| 5     | Phạm Lê Huy | ITITIU20216 | phamlehuy2305@gmail.com | tainguynnn |             
+| 5     | Phạm Lê Huy | ITITIU20216 | phamlehuy2305@gmail.com | yukihira09 |             
 
 ### Tasks and Contribution 
 | Index | Role                                                         | Person In Charge | Contribution |Tasks|

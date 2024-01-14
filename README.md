@@ -1,16 +1,23 @@
-# Nhớ đọc kỹ:
-## Tạo branch mới để làm
-## Trong folder Sidebar có sidebar.js. Trong đó có cái const links để link các page lại với nhau. Nhớ vào đó link. Đừng quan tâm id.
-# Nhớ cài npm i và react-dom. Dùng react để làm và bootstrap và d3.js
-## Dùng react-dom để link page lại với nhau. Làm giống trong app.js là được
 
-"d3": "^7.8.5",
-    "framer-motion": "^10.16.4",
-    "react": "^18.2.0",
-    "react-burger-menu": "^3.0.9",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.11.0",
-    "react-router-dom": "^6.18.0",
-    "react-scripts": "5.0.1",
-    "react-use": "^17.4.0",
-    "sass": "^1.69.5",
+# Data Visualization Project 
+Click here --> <a href="https://ducdatit2002.github.io/datavisualization-project/" target="_blank">TADA Team</a>
+
+### Group: TADA TEAM
+### Our team member
+| Index | Name                   |     ID      |              Email               | Github account             |
+|:------|:-----------------------|:-----------:|:--------------------------------:|:---------------------------|
+| 1     | Trần Ngọc Nhân | ITITIU20264 | nhantran4102002@gmail.com | petertran410 |
+| 2     | Nguyễn Hoàng Thiên Phúc | ITITIU20279 | nguyenhoangthienphuc1802@gmail.com | thienphuc1802 |
+| 3     | Nguyễn Huỳnh Anh Tú | ITITIU20337 | tu.0909023518@gmail.com | ITITIU20337 |
+| 4     | Nguyễn Lê Thành Tài | TITIU20298 | Thanhtainguyenle@gmail.com | tainguynnn | 
+| 5     | Phạm Lê Huy | ITITIU20216 | phamlehuy2305@gmail.com | tainguynnn |             
+
+### Tasks and Contribution 
+| Index | Role                                                         | Person In Charge | Contribution |Tasks|
+|:------|:-------------------------------------------------------------|:--------------:|:------------:|:-------------------------------------------------------------|
+| 1     | Leader     |   Đức Đạt   |          25%      |Overall Framework, Design 01, Report, PowerPoint   |   
+| 2     | Member      |   Thanh Nhàn   |          25%     |Design 01, Design 03, Report, PowerPoint    |    
+| 3     | Member  |  Lam Đạt     |      25%         | Design 02  |     
+| 4     | Member |     Phước Đẫu     |         25%     | Design 04 |       
+
+

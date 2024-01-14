@@ -27,7 +27,7 @@ export default class Graph extends Component {
   infoChart() {
     const { selectedConvince } = this.state;
     d3.csv(
-      "https://raw.githubusercontent.com/petertran410/data_visual_project/GDP/TocDoTangTruongGRDP2.csv"
+      "https://raw.githubusercontent.com/petertran410/data_visual_project/main/src/GDP/TocDoTangTruongGRDP2.csv"
     )
       .then((data) => {
         console.log(data);

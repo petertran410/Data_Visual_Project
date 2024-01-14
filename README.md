@@ -1,8 +1,7 @@
 
 # Data Visualization Project 
-Click here --> <a href="https://ducdatit2002.github.io/datavisualization-project/" target="_blank">TADA Team</a>
 
-### Group: TADA TEAM
+### Group: VN Development Analysis
 ### Our team member
 | Index | Name                   |     ID      |              Email               | Github account             |
 |:------|:-----------------------|:-----------:|:--------------------------------:|:---------------------------|
@@ -15,9 +14,10 @@ Click here --> <a href="https://ducdatit2002.github.io/datavisualization-project
 ### Tasks and Contribution 
 | Index | Role                                                         | Person In Charge | Contribution |Tasks|
 |:------|:-------------------------------------------------------------|:--------------:|:------------:|:-------------------------------------------------------------|
-| 1     | Leader     |   Đức Đạt   |          25%      |Overall Framework, Design 01, Report, PowerPoint   |   
-| 2     | Member      |   Thanh Nhàn   |          25%     |Design 01, Design 03, Report, PowerPoint    |    
-| 3     | Member  |  Lam Đạt     |      25%         | Design 02  |     
-| 4     | Member |     Phước Đẫu     |         25%     | Design 04 |       
+| 1     | Leader     |   Trần Ngọc Nhân   |          25%      |Overall Framework, Population Graph, Report, PowerPoint   |   
+| 2     | Member      |   Nguyễn Hoàng Thiên Phúc   |          25%     |GDP Graph, Report, PowerPoint    |    
+| 3     | Member  |  Nguyễn Huỳnh Anh Tú     |      25%         | Diploma Graph  |     
+| 4     | Member |     Phạm Lê Huy     |         25%     | Design Map VIETNAM |  
+| 5     | Member |     Nguyễn Lê Thành Tài     |         25%     | Design Map VIETNAM |        
 
 

@@ -13,7 +13,7 @@ export default class Chart extends Component {
   }
   componentDidMount() {
     if (!this.state.selectedConvince) {
-      // Set the default value only if it's not already set
+      
       this.setState({ selectedConvince: "Ha Noi" });
     }
     this.infoChart();
@@ -37,7 +37,7 @@ export default class Chart extends Component {
         let year2020 = "2020";
         let year2021 = "2021";
         let filteredData = data.filter((d) => d.CONVINCE === selectedConvince);
-        // let parseTime = d3.timeParse("%Y");
+        
         let dataByConvince = filteredData.map(function (d) {
           return {
             convince: d.CONVINCE,
@@ -63,12 +63,11 @@ export default class Chart extends Component {
   }
 
   draw(data) {
-    // set the dimensions and margins of the graph
+    
     var margin = { top: 10, right: 30, bottom: 30, left: 60 },
       width = 800 - margin.left - margin.right,
       height = 600 - margin.top - margin.bottom;
 
-    // append the svg object to the body of the page
     var svg = d3
       .select("#drawChart")
       .append("svg")
@@ -76,7 +75,7 @@ export default class Chart extends Component {
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    // Add X axis --> it is a date format
+    
     var x = d3
       .scaleBand()
       .domain([
@@ -99,7 +98,6 @@ export default class Chart extends Component {
       .attr("dy", "1em")
       .attr("transform", "rotate(0)");
 
-    // Add Y axis
     var y = d3
       .scaleLinear()
       .domain([
@@ -128,8 +126,6 @@ export default class Chart extends Component {
 
     svg.append("g").call(d3.axisLeft(y));
 
-    // Add the line
-    // Add the line
     svg
       .append("path")
       .datum([
@@ -149,18 +145,18 @@ export default class Chart extends Component {
         d3
           .line()
           .x(function (d) {
-            return x(d.year) + x.bandwidth() / 2; // Adjust for band scale positioning
-          }) // Use x scale to map the year to x-coordinate
+            return x(d.year) + x.bandwidth() / 2; 
+          }) 
           .y(function (d) {
             return y(d.confirm);
-          }) // Use y scale to map the confirmation to y-coordinate
+          }) 
       );
   }
 
   handleConvinceChange(event) {
     const newConvince = event.target.value;
     this.setState({ selectedConvince: newConvince }, () => {
-      // Add a random query parameter to force a complete reload
+      
       const randomQuery = Math.random().toString(36).substring(7);
       window.location.href = `${window.location.origin}${window.location.pathname}?convince=${newConvince}&${randomQuery}`;
     });
@@ -234,7 +230,7 @@ export default class Chart extends Component {
       "Ca Mau",
     ];
     return (
-      <div >
+      <div>
         <label>Select convince:</label>
         <select value={selectedConvince} onChange={this.handleConvinceChange} className="border-2 border-black ml-1">
           {convinceOptions.map((convince) => (

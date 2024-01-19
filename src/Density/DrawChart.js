@@ -63,7 +63,6 @@ export default class Chart extends Component {
   }
 
   draw(data) {
-    
     var margin = { top: 10, right: 30, bottom: 30, left: 60 },
       width = 800 - margin.left - margin.right,
       height = 600 - margin.top - margin.bottom;
